@@ -1,0 +1,24 @@
+/* Styles propres au site get.gss.net */
+
+.balise-html{
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: #1C44F9;
+}
+.classes-html{
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: #5675FF;
+}
+.classes-css-html{
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: #EA3C28;
+}
+
+.commentaire{
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: #787878;
+	font-style: italic;
+}

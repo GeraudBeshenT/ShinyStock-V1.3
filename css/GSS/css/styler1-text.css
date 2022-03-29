@@ -1,0 +1,554 @@
+/*
+Styler v1.0 - Texte - CSS
+* Pour connaître tous les styles de Styler, merci de vous référer à la documentation explicative (fichier .pdf)
+* Copyright Clément LE CARO (auteur) - 2020-2021
+*/
+
+
+/* MISE EN FORME PAR DEFAUT */
+
+html, p, a, ul, ol, li, dl, abbr, i, strong, sup, small, time, mark, del, em, b, sup, ins{
+	font-family: Segoe UI;
+	text-decoration: none;
+}
+
+
+/* Niveaux de titres */
+
+h1{
+	font-family: Helvetica;
+	font-size: 32pt;
+	font-weight: 500;
+}
+h2{
+	font-family: Helvetica;
+	font-size: 26pt;
+	font-weight: 500;
+}
+h3{
+	font-family: Helvetica;
+	font-size: 22pt;
+	font-weight: 500;
+}
+h4{
+	font-family: Helvetica;
+	font-size: 18pt;
+	font-weight: 500;
+}
+h5{
+	font-family: Helvetica;
+	font-size: 15pt;
+	font-weight: 500;
+}
+h6{
+	font-family: Helvetica;
+	font-size: 12pt;
+	font-weight: 500;
+}
+
+
+/* Polices de caractères */
+
+.display-1{
+	font-family: Segoe UI;
+	font-size: 80pt;
+	font-weight: 300;
+}
+.display-2{
+	font-family: Segoe UI;
+	font-size: 65pt;
+	font-weight: 300;
+}
+.display-3{
+	font-family: Segoe UI;
+	font-size: 50pt;
+	font-weight: 300;
+}
+.display-4{
+	font-family: Segoe UI;
+	font-size: 40pt;
+	font-weight: 300;
+}
+
+
+/* Polices de caractères */
+
+.times-new-roman{
+	font-family: "Times New Roman", Times, serif;
+}
+.arial{
+	font-family: Arial;
+}
+.lucida-console{
+	font-family: Lucida Console;
+}
+.georgia{
+	font-family: Georgia;
+}
+.garamond{
+	font-family: Garamond;
+}
+.verdana{
+	font-family: Verdana;
+}
+.helvetica{
+	font-family: Helvetica;
+}
+.courier-new{
+	font-family: Courier New;
+}
+.calibri{
+	font-family: Calibri;
+}
+.impact{
+	font-family: Impact;
+}
+.segoe-ui{
+	font-family: Segoe UI;
+}
+
+
+/* Alignement du texte */
+
+.text-center{
+	text-align: center;
+}
+.text-right{
+	text-align: right;
+}
+
+
+/* Justification du texte */
+
+.text-justify{
+	text-align: justify;
+}
+.text-justify-center{
+	text-align: justify;
+	text-align-last: center;
+}
+.text-justify-right{
+	text-align: justify;
+	text-align-last: right;
+}
+
+
+/* Couleurs texte */
+
+.text-blue{
+	color: #5093FF;
+}
+.text-red{
+	color: red;
+}
+.text-green{
+	color: green;
+}
+.text-yellow{
+	color: #D7D700;
+}
+.text-orange{
+	color: #FF6100;
+}
+.text-pink{
+	color: #FF7A91;
+}
+.text-purple{
+	color: purple;
+}
+.text-brown{
+	color: #A53E00;
+}
+.text-grey{
+	color: grey;
+}
+.text-white{
+	color: white;
+}
+.text-black,
+.text-dark{
+	color: black;
+}
+
+
+/* Taille du texte courant */
+
+.size-6{
+	font-size: 6pt;
+}
+.size-7{
+	font-size: 7pt;
+}
+.size-8{
+	font-size: 8pt;
+}
+.size-9{
+	font-size: 9pt;
+}
+.size-10{
+	font-size: 10pt;
+}
+.size-11{
+	font-size: 11pt;
+}
+.size-12{
+	font-size: 12pt;
+}
+.size-13{
+	font-size: 13pt;
+}
+.size-14{
+	font-size: 14pt;
+}
+.size-15{
+	font-size: 15pt;
+}
+.size-16{
+	font-size: 16pt;
+}
+.size-17{
+	font-size: 17pt;
+}
+.size-18{
+	font-size: 18pt;
+}
+.size-19{
+	font-size: 19pt;
+}
+.size-20{
+	font-size: 20pt;
+}
+
+
+
+/* Style de texte HTML */
+
+abbr{
+	text-decoration: none;
+    border-bottom: 1px dotted rgba(17,17,19,.5);
+    cursor: help;
+}
+var{
+	color: grey;
+}
+kbd{
+	border: 1px solid rgba(17,17,19,.2);
+    border-radius: 4px;
+	position: relative;
+    top: -1px;
+    padding: .25em .35em;
+}
+sup{
+	font-size: 7pt;
+}
+time{
+	color: grey;
+	font-family: Courier New;
+}
+code{
+	background: #1B1B2E;
+    border: 0 solid transparent;
+    border-radius: 4px;
+	color: white;
+	position: relative;
+    top: -1px;
+    padding: .25em .35em;
+}
+sub{
+	font-size: 7pt;
+}
+del{
+	text-decoration: line-through;
+}
+
+
+/* Style de textes */
+
+.text-bold{
+	font-weight: bold;
+}
+.text-extra-bold{
+	font-weight: 800;
+}
+.text-light{
+	font-weight: 350;
+}
+.text-extra-light{
+	font-weight: 300;
+}
+.text-italic{
+	font-style: italic;
+}
+.text-underline{
+	text-decoration: underline;
+}
+.text-deleted{
+	text-decoration: line-through;
+}
+
+
+/* Block de code */
+
+.code-block {
+    border: 1px solid #cacaca;
+    background-color: #e6e6e6;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: #0a0a0a;
+    display: block;
+    overflow: auto;
+    white-space: pre;
+    padding: 1rem;*/
+    margin-bottom: 1.5rem;
+}
+
+.code-block-dark,
+.code-block-black {
+    border: 1px solid #cacaca;
+    background-color: #1B1B2E;
+    font-family: Consolas, "Liberation Mono", Courier, monospace;
+    font-weight: normal;
+    color: white;
+    display: block;
+    overflow: auto;
+    white-space: pre;
+    padding: 1rem;*/
+    margin-bottom: 1.5rem;
+}
+
+
+/* Citations */
+
+blockquote{
+	font-style: normal;
+	font-size: 16px;
+	margin-left: 32px;
+	font-family: Helvetica;
+	border-left: 4px solid black;
+	padding-left: 16px; 
+}
+.blockquote-blue{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid #5093FF;
+	padding-left: 16px; 
+}
+.blockquote-red{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid red;
+	padding-left: 16px; 
+}
+.blockquote-green{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid green;
+	padding-left: 16px; 
+}
+.blockquote-grey{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid grey;
+	padding-left: 16px; 
+}
+.blockquote-yellow{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid #D7D700;
+	padding-left: 16px; 
+}
+.blockquote-orange{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid #FF6100;
+	padding-left: 16px; 
+}
+.blockquote-purple{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid purple;
+	padding-left: 16px; 
+}
+.blockquote-pink{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid #FF7A91;
+	padding-left: 16px; 
+}
+.blockquote-brown{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px solid #A53E00;
+	padding-left: 16px; 
+}
+.blockquote-none{
+	font-style: normal;
+	margin-left: 32px;
+	border-left: 4px #A53E00;
+	padding-left: 16px; 
+}
+
+
+/* Sources texte */
+
+.source{
+	margin-left: 35px;
+	padding-left: 16px;
+	color: grey;
+}
+.source::before{
+    content: "\2014 \00A0";
+}
+.source-italic{
+	margin-left: 35px;
+	padding-left: 16px;
+	color: grey;
+	font-style: italic;
+}
+.source-italic::before{
+    content: "\2014 \00A0";
+}
+.source-bold{
+	margin-left: 35px;
+	padding-left: 16px;
+	color: grey;
+	font-weight: bold;
+}
+.source-bold::before{
+    content: "\2014 \00A0";
+}
+
+
+/* Texte modifié */
+
+.text-muted{
+	color: grey;
+	opacity: 70%;
+}
+.text-muted-underline{
+	color: grey;
+	text-decoration: underline;
+	opacity: 70%;
+}
+.large{
+	font-size: 15pt;
+}
+.small{
+	font-size: 9pt;
+}
+.very-small{
+	font-size: 7pt;
+}
+
+.highlight-blue{
+	background-color: #C7C7FF;
+}
+.highlight-red{
+	background-color: #FFC7C7;
+}
+.highlight-green{
+	background-color: #D2FFC7;
+}
+.highlight-yellow{
+	background-color: #FFFB80;
+}
+.highlight-orange{
+	background-color: #FFC994;
+}
+.highlight-purple{
+	background-color: #E3C7FF;
+}
+.highlight-pink{
+	background-color: #FCC7FF;
+}
+
+
+/* Transformation du texte */
+
+.text-uppercase{
+	text-transform: uppercase;
+}
+.text-lowercase{
+	text-transform: lowercase;
+}
+
+
+/* Texte de début de paragraphe */
+
+.lead{
+	font-weight: 500;
+	font-size: 15pt;
+}
+.lead-bold{
+	font-weight: 650;
+	font-size: 15pt;
+}
+.lead-italic{
+	font-style: italic;
+	font-size: 15pt;
+}
+.drop-cap:first-letter{
+	font-size : 35pt;
+	margin-right: 8px;
+	float : left;
+}
+
+
+/* Espacement entre les lignes d'un paragraphe */
+
+.line-spacing-1{
+	line-height: 12pt;
+}
+.line-spacing-2{
+	line-height: 20pt;
+}
+.line-spacing-3{
+	line-height: 24pt;
+}
+.line-spacing-4{
+	line-height: 30pt;
+}
+
+
+/* Décoration des liens */
+
+.link-underline-hover:hover{
+	text-decoration: underline;
+}
+.link-highlight-hover:hover{
+	background-color: #CBCBCB;
+}
+
+
+/* Texte transparent */
+
+.opacity-1{
+	opacity: 90%;
+}
+.opacity-2{
+	opacity: 80%;
+}
+.opacity-3{
+	opacity: 70%;
+}
+.opacity-4{
+	opacity: 60%;
+}
+.opacity-5{
+	opacity: 50%;
+}
+.opacity-6{
+	opacity: 40%;
+}
+
+
+/* Styles de listes */
+
+ul {
+	list-style: none;
+}
+
+.list-inline{
+	display: inline;
+	padding: 4rem;
+}

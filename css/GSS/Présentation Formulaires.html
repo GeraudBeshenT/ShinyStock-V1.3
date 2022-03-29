@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Styler - Exemples Formulaires</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<link rel="stylesheet" href="css/styler1-text.css">
+		<link rel="stylesheet" href="css/styler1-form.css">
+		<link rel="stylesheet" href="css/styler1-grid.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="container">
+		
+		<h2 class="text-grey">Tous les champs de saisie de formulaire : </h2>
+		
+			<form method="post" action="">
+				<div class="col-4">
+					<label>Champ de type text</label>
+					<input type="text" name="" placeholder="Champ de type text">
+				</div><br>
+				
+				<div class="col-4">
+					<label>Champ de type text désactivé</label>
+					<input type="text" name="" placeholder="Champ de type text désactivé" disabled>
+				</div><br>
+			
+				<div>
+					<label>Champ de type email</label>
+					<input type="email" name="" placeholder="Champ de type email">
+				</div><br>
+			
+				<div>
+					<label>Champ de type password</label>
+					<input type="password" name="" placeholder="Champ de type password">
+				</div><br>
+				
+				<div>
+					<label>Zone de texte de type textarea</label>
+					<textarea rows="6" name="" placeholder="Zone de texte"></textarea>
+				</div><br>
+				
+				<div>
+					<label>Champ à choix multiples</label>
+					<select>
+						<option value="1">Choix 1</option>
+						<option value="2">Choix 2</option>
+					</select>
+				</div><br>
+				
+				<div>
+					<label>Champ à choix multiples désactivé</label>
+					<select disabled>
+						<option value="1">Choix 1</option>
+						<option value="2">Choix 2</option>
+					</select>
+				</div><br>
+				
+				<div>
+					<label>Menu à choix multiples
+						<select multiple>
+							<option value="1">Football</option>
+							<option value="2">Basketball</option>
+							<option value="3">Tenis</option>
+							<option value="4">Ping-Pong</option>
+						</select>
+					</label>
+				</div><br>
+				
+				<div>
+					<label><input type="checkbox"> Option A</label><br>
+					<label><input type="radio"> Option B</label>
+				</div><br>
+				
+				<div>
+					<label><input type="checkbox" disabled> Option A désactivé</label><br>
+					<label><input type="radio" disabled> Option B désactivé</label>
+				</div><br>
+				
+				<p class="form-text">Ceci est du texte qui ne peut se trouver que dans un formulaire.</p><br>
+				
+				<div>
+					<label for="rang">Bouton de progression</label><br>
+					<input type="range" class="form-range">
+				</div><br>
+				
+				<div>
+					<label for="rang">Bouton de progression désactivé</label><br>
+					<input type="range" class="form-range" disabled>
+				</div><br>
+				
+				<br><div>
+					<button class="button bg_blue-radius_5">Bouton</button>
+					<button class="button bg_none-border_blue-radius_5">Bouton</button>
+				</div>
+			</form><br><br>
+			
+			<br><hr><br>
+			
+		<h2 class="text-grey text-center">Exemples de formulaires</h2><br>
+			<h3 class="text-bold">Formulaire d'inscription</h3>
+				<form method="post" action="">
+					<div class="col-8 col">
+						<div>
+							<label>Nom</label>
+							<input type="text" name="nom" placeholder="Entrez votre nom">
+						</div><br>
+						<div>
+							<label>Prénom</label>
+							<input type="text" name="prenom" placeholder="Entrez votre prénom">
+						</div><br>
+						<div>
+							<label>E-mail</label>
+							<input type="email" name="mail" placeholder="Entrez votre e-mail">
+						</div><br>
+						<div>
+							<label>Mot de passe</label>
+							<input type="password" name="pass" placeholder="Entrez votre mot de passe">
+						</div><br>
+						
+						<div>
+							<button class="button bg_blue-radius_5">M'inscrire</button>
+							<button class="button bg_none-border_blue-radius_5">Retour</button>
+						</div>
+					</div>
+				</form><br>
+				
+				
+				<h3 class="text-bold">Formulaire de connexion</h3>
+				<form method="post" action="">
+					<div class="col-8 col">
+						<div>
+							<label>E-mail</label>
+							<input type="email" name="mail" placeholder="Entrez votre e-mail">
+						</div><br>
+						<div>
+							<label>Mot de passe</label>
+							<input type="password" name="pass" placeholder="Entrez votre mot de passe">
+						</div>
+						<p class="form-text">Mot de passe oublié ? <a class="text-blue" href="#">Cliquez ici</a></p><br>
+						<div>
+							<button class="button-block bg_blue-radius_5">Connexion</button><br>
+						</div>
+					</div>
+				</form><br>
+				
+				
+				<h3 class="text-bold">Formulaire de contact</h3>
+				<form method="post" action="">
+					<div class="row">
+						<div class="col-4 col">
+							<label>Nom/Prénom</label>
+							<input type="text" name="nom" placeholder="Entrez votre nom et prénom">
+						</div><br>	
+						<div class="col-4 col">
+							<label>E-mail</label>
+							<input type="email" name="mail" placeholder="Entrez votre e-mail">
+						</div><br>
+					</div>
+					<div class="row">
+						<div class="col-4 col">
+							<label>Téléphone</label>
+							<input type="tel" name="telephone" placeholder="Entrez votre numéro de téléphone">
+						</div><br>
+						<div class="col-4 col">
+							<label>Nom de la société</label>
+							<input type="text" name="societe" placeholder="Entrez le nom de votre société">
+						</div><br>
+					</div>
+					<div class="row">
+						<div class="col-8 col">
+							<label>Sujet de votre message</label>
+							<input type="text" name="sujet" placeholder="Sujet de votre message">
+						</div><br>
+					</div>
+					<div class="row">
+						<div class="col-8 col">
+							<label>Votre message</label>
+							<textarea rows="6" placeholder="Votre message"></textarea>
+						</div><br>
+					</div>
+						<div>
+							<button class="button bg_blue-radius_5">Me connecter</button>
+							<button class="button bg_none-border_blue-radius_5">Retour</button>
+						</div>
+				</form><br>
+				
+				
+				<h3 class="text-bold">Formulaire à cocher</h3>
+				<form method="post" action="">
+					<div>
+						<p class="text-bold">Question 1 :</p>
+						<p class="size-12">De quelle couleur est le cheval blanc d'Henri IV ?</p>
+						<label><input type="radio">Blanc</label><br>
+						<label><input type="radio">Rose</label>
+					</div><br>
+					<div>
+						<p class="text-bold">Question 2 :</p>
+						<p class="size-12">Cocher les noms des objets qui sont bleus ?</p>
+						<label><input type="checkbox">Ciel</label><br>
+						<label><input type="checkbox">Neige</label><br>
+						<label><input type="checkbox">Herbe</label><br>
+						<label><input type="checkbox">Océan</label>
+					</div><br>
+					<div>
+						<button class="button bg_blue-radius_5">Soumettre</button>
+					</div>
+				</form><br>
+		</div>
+	</body>
+</html>
