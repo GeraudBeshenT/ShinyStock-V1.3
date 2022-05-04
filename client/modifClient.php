@@ -18,36 +18,36 @@
 	include '../all.class.inc.php';
 	if ($_POST['action'] == 'modifier')
 	{
-		$ob = new Clients($_POST['idtiers']);
+		$ob = new Client($_POST['idclient']);
 		$ob->GetByID($conn);
 		$action = 'modifier';
-		echo "<p class='size-18 text-center'><b>Modifier le client ",$ob->Getnom(), "</p><br>";
+		echo "<p class='size-18 text-center'><b>Modifier le client ",$ob->Getnomclient(), "</p><br>";
 	}
 	else
 	{
-		$ob = new Clients();
+		$ob = new Client();
 		$action = 'ajouter';
 		echo "<p class='size-18 text-center'><b> Ajouter un nouveau Fournisseur </b></p><br>";
 	}
 ?>
 	<form method='POST' action='traitementClient.php'>
         <div class='row'>
-				<input name='idtiers' type='hidden' value='<?php echo $ob->Getidtiers(); ?>'/>
+				<input name='idclient' type='hidden' value='<?php echo $ob->Getidclient(); ?>'/>
 	           	<div class="col-6 text-bold">
 	           		Nom: 
-	           		<input name='nom' type='text' placeholder="Nom de la société" value='<?php echo $ob->Getnom(); ?>' required /><br>
+	           		<input name='nomclient' type='text' placeholder="Nom de la société" value='<?php echo $ob->Getnomclient(); ?>' required /><br>
 				</div>
 	           	<div class="col-6 text-bold">
 	           		Adresse: 
-	           		<input name='adresse' type='text' placeholder="Adresse du Siège social" value='<?php echo $ob->Getadresse(); ?>' required /><br>
+	           		<input name='adresseclient' type='text' placeholder="Adresse du Siège social" value='<?php echo $ob->Getadresseclient(); ?>' required /><br>
 	           	</div>
 	           	<div class="col-6 text-bold">
 	           		Numéro de téléphone:
-	           		<input name='telephone' type='text' placeholder="Numéro de téléphone à 10 chiffres" value='<?php echo $ob->Gettelephone(); ?>' required /><br>
+	           		<input name='telephoneclient' type='text' placeholder="Numéro de téléphone à 10 chiffres" value='<?php echo $ob->Gettelephoneclient(); ?>' required /><br>
 	           	</div>
 	           	<div class="col-6 text-bold">
 	           		Email:
-	           		<input name='email' type='text' placeholder="exemple@gmail.com" value='<?php echo $ob->Getemail(); ?>' required/><br>
+	           		<input name='emailclient' type='text' placeholder="exemple@gmail.com" value='<?php echo $ob->Getemailclient(); ?>' required/><br>
 	           	</div>
 	           	<div class="col-6 text-bold">
 	           		Commune:
@@ -57,7 +57,7 @@
                 </div>
 	           	<div class="col-6 text-bold">
 	           		Préfixe:
-	           		<input name='prefixe' type='text' placeholder="Format alphabétique" value='<?php echo $ob->Getprefixe(); ?>' required/><br>
+	           		<input name='prefixeclient' type='text' placeholder="Format alphabétique" value='<?php echo $ob->Getprefixeclient(); ?>' required/><br>
 	           	</div>
 	           	<div class="col-6 text-bold">
 	           		Indic Prospect:

@@ -15,20 +15,20 @@
         <?php
                 if ($_POST['action'] == 'voir')
                 {
-                    $ob = new Fournisseur($_POST['idtiers']);
+                    $ob = new Fournisseur($_POST['idfournisseur']);
                     $ob->GetByID($conn);
                     $action = 'voir';
-                        echo "<p class='size-18 text-center'><b>Consulter les données de ",$ob->Getnom(), "</b></p><br>";
+                        echo "<p class='size-18 text-center'><b>Consulter les données de ",$ob->Getnomfournisseur(), "</b></p><br>";
                     echo "<div class='btn-toolbar mb-2 mb-md-0'></div>";
                     echo "</div>";
                     }
                 
-                    echo "<p><b>- Fournisseur</b> : ", $ob->Getlibsociete(),"&nbsp", $ob->Getnom(),"</p>";
-                    echo "<p><b>- Coordonnées</b> : ", $ob->Gettelephone(), ",&nbsp", $ob->Getemail(),"</p>";
-                    echo "<p><b>- Adresse</b> : ", $ob->Getadresse(), ",&nbsp", $ob->Getcpcommune(), "&nbsp", $ob->Getlibcommune(),"</p>";
+                    echo "<p><b>- Fournisseur</b> : ", $ob->Getlibsociete(),"&nbsp", $ob->Getnomfournisseur(),"</p>";
+                    echo "<p><b>- Coordonnées</b> : ", $ob->Gettelephonefournisseur(), ",&nbsp", $ob->Getemailfournisseur(),"</p>";
+                    echo "<p><b>- Adresse</b> : ", $ob->Getadressefournisseur(), ",&nbsp", $ob->Getlibcommune(),"</p>";
                     echo "<p><b>- Tarif indiqué</b> : ", $ob->Getlibtarif(),"</p>";
                     echo "<p><b>- Moyen de paiement</b> : ", $ob->Getlibpaiement(),"</p>";
-                    echo "<p><b>- Infos légales</b> : ", $ob->Getcodefournisseur(), "&nbsp", $ob->Getlibfournisseur(),"</p>";
+                    echo "<p><b>- Infos légales</b> : ", $ob->Getcodefournisseur(),"</p>";
         ?>
         
         

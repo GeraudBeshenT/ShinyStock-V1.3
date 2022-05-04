@@ -15,15 +15,15 @@ $searchArray = array();
 
 $searchQuery = " ";
 if ($searchValue != '') {
-    $searchQuery = " AND (iddocument LIKE :iddocument "
-            . "OR datedoc LIKE :datedoc "
-            . "OR statut LIKE :statut "
-            . "OR commentaire LIKE :commentaire ";
+    $searchQuery = " AND (iddocumentclient LIKE :iddocumentclient "
+            . "OR datedocclient LIKE :datedocclient "
+            . "OR statutclient LIKE :statutclient "
+            . "OR commentaireclient LIKE :commentaireclient ";
     $searchArray = array(
-        'iddocument' => "%$searchValue%",
-        'datedoc' => "%$searchValue%",
-        'statut' => "%$searchValue%",
-        'commentaire' => "%$searchValue%"
+        'iddocumentclient' => "%$searchValue%",
+        'datedocclient' => "%$searchValue%",
+        'statutclient' => "%$searchValue%",
+        'commentaireclient' => "%$searchValue%"
     );
 }
 
@@ -32,7 +32,7 @@ $ob = new Document();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM document INNER JOIN etat ON etat.idetat = document.idetat INNER JOIN fournisseur ON document.idfournisseur = fournisseur.idfournisseur WHERE supdocument = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM documentclient INNER JOIN etat ON etat.idetat = documentclient.idetat INNER JOIN client ON documentclient.idclient = client.idclient WHERE supdocumentclient = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
@@ -45,28 +45,28 @@ $empRecords = $stmt->fetchAll();
 
 $data = array();
 // Boucle modifier supprimé qui se répète sur toutes les lignes du tableau.
-// Récupération de l'idfournisseur, formulaire de modification/suppression qui envoient les données dans les fichiers modifournisseur/tratiementfournisseur.
+// Récupération de l'idclient, formulaire de modification/suppression qui envoient les données dans les fichiers modiclient/tratiementclient.
 foreach ($empRecords as $row) {
-    if ($row['supdocument'] == 0) {
+    if ($row['supdocumentclient'] == 0) {
         $data[] = array(
-            "iddocument" => $row['iddocument'],
-            "datedoc" => $row['datedoc'],
-            "statut" => $row['statut'],
-            "commentaire" => $row['commentaire'],
+            "iddocumentclient" => $row['iddocumentclient'],
+            "datedocclient" => $row['datedocclient'],
+            "statutclient" => $row['statutclient'],
+            "commentaireclient" => $row['commentaireclient'],
             "idetat" => $row['idetat'],
             "libetat" => $row['libetat'],
-            "idfournisseur" => $row['idfournisseur'],
-            "nomfournisseur" => $row['nomfournisseur'],
+            "idclient" => $row['idclient'],
+            "nomclient" => $row['nomclient'],
             "actions" => "<div class='btn-group'>"
-            . "<form method='POST' action='modifDocument.php'>"
+            . "<form method='POST' action='modifDocumentclient.php'>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
-                . "<input name='iddocument' type='hidden' value='" . $row['iddocument'] . "'/>"
+                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
                 . "<input name='action' type='hidden' value='modifier'/>"
             . "</form> &nbsp"
-            ."<form method='POST' action='traitementDocument.php'>"
+            ."<form method='POST' action='traitementDocumentclient.php'>"
                 . "<button type='submit' class='btn btn-danger rounded-pill'><i class='fa fa-trash'></i></button>"
-                . "<input name='iddocument' type='hidden' value='" . $row['iddocument'] . "'/>"
+                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
                 . "<input name='action' type='hidden' value='supprimer'/>"
             . "</form></div>",

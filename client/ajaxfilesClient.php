@@ -15,27 +15,27 @@ $searchArray = array();
 
 $searchQuery = " ";
 if ($searchValue != '') {
-    $searchQuery = " AND (nom LIKE :nom "
-            . "OR adresse LIKE :adresse)";
-    $searchValue = str_replace(" ","%%",$searchValue);
+    $searchQuery = " AND (idclient LIKE :idclient) "
+            . "OR (nomclient LIKE :nomclient)"
+            . "OR (adresseclient LIKE :adresseclient)"
+            . "OR (emailclient LIKE :emailclient)"
+            . "OR (telephoneclient LIKE :telephoneclient)";
     $searchArray = array(
-        'nom' => "%$searchValue%",
-        'adresse' => "%$searchValue%"
+        'idclient' => "%$searchValue%",
+        'nomclient' => "%$searchValue%",
+        'adresseclient' => "%$searchValue%",
+        'emailclient' => "%$searchValue%",
+        'telephoneclient' => "%$searchValue%"
     );
 }
 
-
-$ob = new Clients();
+$ob = new Client();
 
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT *
-                FROM tiers
-                INNER JOIN tarif ON tiers.idtarif = tarif.idtarif
-                INNER JOIN commune ON tiers.idcommune = commune.idcommune
-                INNER JOIN paiement ON tiers.idpaiement = paiement.idpaiement
-                WHERE suptiers = 0 AND typetiers = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM client INNER JOIN commune ON commune.idcommune = client.idcommune INNER JOIN tarif ON tarif.idtarif = client.idtarif INNER JOIN paiement ON paiement.idpaiement = client.idpaiement WHERE supclient = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
 }
@@ -48,46 +48,46 @@ $empRecords = $stmt->fetchAll();
 $data = array();
 
 foreach ($empRecords as $row) {
-    if ($row['suptiers'] == 0) {
+    if ($row['supclient'] == 0) {
         $data[] = array(
-            "idtiers" => $row['idtiers'],
-            "nom" => $row['nom'],
-            "adresse" => $row['adresse'],
-            "telephone" => $row['telephone'],
-			"email" => $row['email'],
+            "idclient" => $row['idclient'],
+            "nomclient" => $row['nomclient'],
+            "adresseclient" => $row['adresseclient'],
+            "telephoneclient" => $row['telephoneclient'],
+			"emailclient" => $row['emailclient'],
 			"libcommune" => $row['libcommune'],
-            "prefixe" => $row['prefixe'],
-            "indicprospect" => $row['indicprospect'],
-            "iban" => $row['iban'],
-            "bic" => $row['bic'],
-            "codebanque" => $row['codebanque'],
-            "codeguichet" => $row['codeguichet'],
-            "ncompte" => $row['ncompte'],
-            "clerib" => $row['clerib'],
-            "domiciliation" => $row['domiciliation'],
-            "tel2" => $row['tel2'],
-            "libtarif" => $row['libtarif'],
-            "libpaiement" => $row['libpaiement'],
-            "libtarif" => $row['libtarif'],
+            // "prefixeclient" => $row['prefixeclient'],
+            // "indicprospect" => $row['indicprospect'],
+            // "iban" => $row['iban'],
+            // "bic" => $row['bic'],
+            // "codebanque" => $row['codebanque'],
+            // "codeguichet" => $row['codeguichet'],
+            // "ncompte" => $row['ncompte'],
+            // "clerib" => $row['clerib'],
+            // "domiciliation" => $row['domiciliation'],
+            // "tel2" => $row['tel2'],
+            // "libtarif" => $row['libtarif'],
+            // "libpaiement" => $row['libpaiement'],
+            // "libtarif" => $row['libtarif'],
             "actions" => "<div class='btn-group'>"
             // bouton détail
             . "<form method='POST' action='client.php'>"
                 . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-search'></i></button>"
-                . "<input name='idtiers' type='hidden' value='" . $row['idtiers'] . "'/>"
+                . "<input name='idclient' type='hidden' value='" . $row['idclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Client'/>"
                 . "<input name='action' type='hidden' value='voir'/>"
             . "</form> &nbsp"
             // bouton modifier
             . "<form method='POST' action='modifClient.php'>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
-                . "<input name='idtiers' type='hidden' value='" . $row['idtiers'] . "'/>"
+                . "<input name='idclient' type='hidden' value='" . $row['idclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Client'/>"
                 . "<input name='action' type='hidden' value='modifier'/>"
                 . "</form> &nbsp"
                 // Bouton supprimer
             ."<form method='POST' action='traitementClient.php'>"
                 . "<button type='submit' class='btn btn-danger rounded-pill'><i class='fa fa-trash'></i></button>"
-                . "<input name='idtiers' type='hidden' value='" . $row['idtiers'] . "'/>"
+                . "<input name='idclient' type='hidden' value='" . $row['idclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Client'/>"
                 . "<input name='action' type='hidden' value='supprimer'/>"
             . "</form></div>",

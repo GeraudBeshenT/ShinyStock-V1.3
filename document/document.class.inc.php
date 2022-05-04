@@ -1,85 +1,97 @@
 <?php
-include '../bdd.class.inc.php';
-
     class Document
     {
-        Public function __construct(string $num_documents='',string $date_documents='', string $commentaire='', string $statut='', string $Etat='', string $Tiers='')
+        Private $iddocument;
+        Private $datedoc;
+        Private $commentaire;
+        Private $statut;
+        Private $idetat;
+        Private $libetat;
+        Private $idfournisseur;
+        Private $nomfournisseur;
+
+        Public function __construct(string $iddocument='', string $datedoc='', string $commentaire='', string $statut='', string $idetat='', string $idfournisseur='')
         {
-            global $conn;
-            $this->ID = $num_documents;
-            $this->date_documents = $date_documents;
+            $this->iddocument = $iddocument;
+            $this->datedoc = $datedoc;
             $this->commentaire = $commentaire;
             $this->statut = $statut;
-            $this->Etat = new Etat ($Etat);$this->Etat->GetByID($conn);
-            $this->Tiers = new Clients ($Tiers);$this->Tiers->GetByID($conn);;
+            $this->idetat = $idetat;
+            $this->idfournisseur = $idfournisseur;
         }
 
-        Public function SetID($e){$this->num_documents=$e;}
-        Public function SetDate_Documents($e){$this->date_documents=$e;}
-        Public function SetStatut($e){$this->statut=$e;}
-        Public function SetCommentaire($e){$this->commentaire=$e;}
-        Public function SetEtat($e){$this->Etat = new Etat ($e);$this->Etat->GetByID($conn);}
-        Public function SetTiers($e){$this->Tiers = new Tiers ($e);$this->Tiers->GetByID($conn);}
+        Public function Getiddocument(){return $this->iddocument;}
+        Public function Getdatedoc(){return $this->datedoc;}
+        Public function Getcommentaire(){return $this->commentaire;}
+        Public function Getstatut(){return $this->statut;}
+        Public function Getidetat(){return $this->idetat;}
+        Public function Getlibetat(){return $this->libetat;}
+        Public function Getidfournisseur(){return $this->idfournisseur;}
+        Public function Getnomfournisseur(){return $this->nomfournisseur;}
 
-        Public function GetID(){return $this->num_documents;}
-        Public function GetDate_Documents(){return $this->date_documents;}
-        Public function GetStatut(){return $this->statut;}
-        Public function GetCommentaire(){return $this->commentaire;}
-        Public function GetEtat(){return $this->id_Etat;}
-        Public function GetTiers(){return $this->id_Tiers;}
+        Public function Setiddocument($e){$this->iddocument=$e;}
+        Public function Setdatedoc($e){$this->datedoc=$e;}
+        Public function Setcommentaire($e){$this->commentaire=$e;}
+        Public function Setstatut($e){$this->statut=$e;}
+        Public function Setidetat($e){$this->idetat=$e;}
+        Public function Setidfournisseur($e){$this->idfournisseur=$e;}
 
-        Public function GetByNum_Documents($pdo)
+        Public function GetByID($pdo)
         {
-            $stmt = $pdo->prepare('SELECT * FROM document WHERE num_documents = :num_documents');
-            $stmt->bindValue(':num_documents',$this->num_documents, PDO::PARAM_STR);
+            $stmt = $pdo->prepare('SELECT * FROM document
+                INNER JOIN etat ON etat.idetat = document.idetat INNER JOIN fournisseur ON fournisseur.idfournisseur = document.idfournisseur
+                WHERE supdocument = 0 AND iddocument = :iddocument');
+            $stmt->bindValue(':iddocument',$this->iddocument, PDO::PARAM_STR);
             $stmt->execute();
             $row = $stmt->fetch();
-            $this->ID = $row['num_documents'];
-            $this->date_documents = $row['date_documents'];
-            $this->commentaire = $row['commentaire'];
+            $this->iddocument = $row['iddocument'];
+            $this->datedoc = $row['datedoc'];
             $this->statut = $row['statut'];
-            $this->Etat =  new Etat ($row['id_etat']);
-            $this->Tiers =  new Tiers($row['id_tiers']);
+            $this->commentaire = $row['commentaire'];
+            $this->libetat = $row['libetat'];
+            $this->nomfournisseur = $row['nomfournisseur'];
         }
 
         Public function DelBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE document SET b_supdocument = 1 WHERE num_documents = :num_documents');
-            $stmt->bindValue(':num_documents',$this->num_documents, PDO::PARAM_STR);
+            $stmt = $pdo->prepare('UPDATE document SET supdocument = 1 WHERE iddocument = :iddocument');
+            $stmt->bindValue(':iddocument',$this->iddocument, PDO::PARAM_STR);
             $stmt->execute();
         }
 
         Public function SaveBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE document SET date_documents= :date_documents,
-                commentaire= :commentaire,
-                statut= :statut,
-                id_etat= :id_etat,
-                id_tiers= :id_tiers WHERE num_documents = :num_documents');
-            $stmt->bindValue(':date_documents',$this->date_documents, PDO::PARAM_STR);
+            $stmt = $pdo->prepare('UPDATE document SET datedoc = :datedoc, commentaire = :commentaire, statut = :statut, idetat = :idetat, idfournisseur = :idfournisseur WHERE iddocument = :iddocument');
+            
+            // var_dump($stmt);
+            // var_dump($this);
+            // die(); 
+            $stmt->bindValue(':iddocument',$this->iddocument, PDO::PARAM_STR);
+            $stmt->bindValue(':datedoc',$this->datedoc, PDO::PARAM_STR);
             $stmt->bindValue(':commentaire',$this->commentaire, PDO::PARAM_STR);
             $stmt->bindValue(':statut',$this->statut, PDO::PARAM_STR);
-            $stmt->bindValue(':id_Etat',$this->Etat->GetID(), PDO::PARAM_STR);
-            $stmt->bindValue(':id_Tiers',$this->Tiers->GetID(), PDO::PARAM_STR);
-            $stmt->bindValue(':num_documents',$this->ID, PDO::PARAM_STR);
+            $stmt->bindValue(':idetat',$this->idetat, PDO::PARAM_STR);
+            $stmt->bindValue(':idfournisseur',$this->idfournisseur, PDO::PARAM_STR);
             $stmt->execute();
         }
 
         Public function AddBDD($pdo)
         {
-            $stmt = $pdo->prepare("INSERT INTO document (date_documents, commentaire, statut, id_etat, id_tarif, b_supdocument) VALUES (:date_documents, :commentaire, :statut, :id_etat, :id_tiers, 0);");
-            $stmt->bindValue(':date_documents',$this->date_documents, PDO::PARAM_STR);
+            $stmt = $pdo->prepare("INSERT INTO document (iddocument, datedoc, commentaire, statut, idetat, idfournisseur, supdocument) VALUES (NULL, :datedoc, :commentaire, :statut, :idetat, :idfournisseur, 0);");
+            // var_dump($stmt);
+            // var_dump($this);
+            // die(); 
+            $stmt->bindValue(':datedoc',$this->datedoc, PDO::PARAM_STR);
             $stmt->bindValue(':commentaire',$this->commentaire, PDO::PARAM_STR);
             $stmt->bindValue(':statut',$this->statut, PDO::PARAM_STR);
-            $stmt->bindValue(':id_etat',$this->etat, PDO::PARAM_STR);
-            $stmt->bindValue(':id_tiers',$this->tiers, PDO::PARAM_STR);
+            $stmt->bindValue(':idetat',$this->idetat, PDO::PARAM_STR);
+            $stmt->bindValue(':idfournisseur',$this->idfournisseur, PDO::PARAM_STR);
             $stmt->execute();
-            var_dump($stmt);
         }
 
         Public function CountBDD($pdo)
         {
-            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM document WHERE b_supdocument = 0");
+            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM document WHERE supdocument = 0");
             $stmt->execute();
             $records = $stmt->fetch();
             return $records['allcount'];
@@ -87,7 +99,7 @@ include '../bdd.class.inc.php';
 
         Public function CountParamBDD($pdo,$searchQuery,$searchArray)
         {
-            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM document WHERE b_supdocument = 0 " . $searchQuery);
+            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM document WHERE supdocument = 0 " . $searchQuery);
             $stmt->execute($searchArray);
             $records = $stmt->fetch();
             return $records['allcount'];

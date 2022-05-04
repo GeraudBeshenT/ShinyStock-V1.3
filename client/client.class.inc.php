@@ -1,16 +1,14 @@
 <?php
-	class Clients
+	class Client
 	{
-        Private $idtiers;
-        Private $typetiers;
-        Private $nom;
-        Private $adresse;
-        Private $telephone;
-        Private $email;
+        Private $idclient;
+        Private $nomclient;
+        Private $adresseclient;
+        Private $telephoneclient;
+        Private $emailclient;
         Private $idcommune;
         Private $libcommune;
-        Private $cpcommune;
-        Private $prefixe;
+        Private $prefixeclient;
         Private $indicprospect;
         Private $iban;
         Private $bic;
@@ -25,16 +23,15 @@
         Private $idpaiement;
         Private $libpaiement;
 
-		Public function __construct( string $idtiers = '', string $typetiers = '', string $nom = '', string $adresse = '', string $telephone = '', string $email = '', string $idcommune = '', string $prefixe = '', string $indicprospect = '', string $iban = '', string $bic = '', string $codebanque = '', string $codeguichet = '', string $ncompte = '', string $clerib = '', string $domiciliation = '', string $tel2 = '', string $idtarif = '', string $idpaiement = '')
+		Public function __construct( string $idclient = '', string $nomclient = '', string $adresseclient = '', string $telephoneclient = '', string $emailclient = '', string $idcommune = '', string $prefixeclient = '', string $indicprospect = '', string $iban = '', string $bic = '', string $codebanque = '', string $codeguichet = '', string $ncompte = '', string $clerib = '', string $domiciliation = '', string $tel2 = '', string $idtarif = '', string $idpaiement = '')
 		{
-            $this->idtiers = $idtiers;
-            $this->typetiers = $typetiers;
-            $this->nom = $nom;
-            $this->adresse = $adresse;
-            $this->telephone = $telephone;
-            $this->email = $email;
+            $this->idclient = $idclient;
+            $this->nomclient = $nomclient;
+            $this->adresseclient = $adresseclient;
+            $this->telephoneclient = $telephoneclient;
+            $this->emailclient = $emailclient;
             $this->idcommune = $idcommune;
-            $this->prefixe = $prefixe;
+            $this->prefixeclient = $prefixeclient;
             $this->indicprospect = $indicprospect;
             $this->iban = $iban;
             $this->bic = $bic;
@@ -48,16 +45,15 @@
             $this->idpaiement = $idpaiement;
 		}
 
-		Public function Getidtiers(){return $this->idtiers;}
-		Public function Gettypetiers(){return $this->typetiers;}
-		Public function Getnom(){return $this->nom;}
-		Public function Getadresse(){return $this->adresse;}
-		Public function Gettelephone(){return $this->telephone;}
-		Public function Getemail(){return $this->email;}
+		Public function Getidclient(){return $this->idclient;}
+		Public function Getnomclient(){return $this->nomclient;}
+		Public function Getadresseclient(){return $this->adresseclient;}
+		Public function Gettelephoneclient(){return $this->telephoneclient;}
+		Public function Getemailclient(){return $this->emailclient;}
 		Public function Getidcommune(){return $this->idcommune;}
         Public function Getlibcommune(){return $this->libcommune;}
 		Public function Getcpcommune(){return $this->cpcommune;}
-		Public function Getprefixe(){return $this->prefixe;}
+		Public function Getprefixeclient(){return $this->prefixeclient;}
 		Public function Getindicprospect(){return $this->indicprospect;}
 		Public function Getiban(){return $this->iban;}
 		Public function Getbic(){return $this->bic;}
@@ -72,14 +68,13 @@
 		Public function Getidpaiement(){return $this->idpaiement;}
 		Public function Getlibpaiement(){return $this->libpaiement;}
 
-		Public function Setidtiers(int $e){$this->idtiers = $e;}
-		Public function Settypetiers(int $e){$this->typetiers;}
-		Public function Setnom(string $e){$this->nom;}
-		Public function Setadresse(string $e){$this->adresse;}
-		Public function Settelephone(string $e){$this->telephone;}
-		Public function Setemail(string $e){$this->email;}
+		Public function Setidclient(int $e){$this->idclient = $e;}
+		Public function Setnomclient(string $e){$this->nomclient;}
+		Public function Setadresseclient(string $e){$this->adresseclient;}
+		Public function Settelephoneclient(string $e){$this->telephoneclient;}
+		Public function Setemailclient(string $e){$this->emailclient;}
 		Public function Setidcommune(int $e){$this->idcommune;}
-		Public function Setprefixe(int $e){$this->prefixe;}
+		Public function Setprefixeclient(int $e){$this->prefixeclient;}
 		Public function Setindicprospect(string $e){$this->indicprospect;}
 		Public function Setiban(string $e){$this->iban;}
 		Public function Setbic(string $e){$this->bic;}
@@ -95,22 +90,22 @@
 		Public function GetByID($pdo)
         {
             $stmt = $pdo->prepare('SELECT *
-                FROM tiers
-                INNER JOIN commune ON tiers.idcommune=commune.idcommune
-                INNER JOIN tarif ON tiers.idtarif=tarif.idtarif
-                INNER JOIN paiement ON tiers.idpaiement=paiement.idpaiement
-                WHERE idtiers = :idtiers
-                AND typetiers = 0;');
-            $stmt->bindValue(':idtiers',$this->idtiers, PDO::PARAM_INT);
+                FROM client
+                INNER JOIN commune ON client.idcommune=commune.idcommune
+                INNER JOIN tarif ON client.idtarif=tarif.idtarif
+                INNER JOIN paiement ON client.idpaiement=paiement.idpaiement
+                WHERE supclient = 0 AND idclient = :idclient;');
+            $stmt->bindValue(':idclient',$this->idclient, PDO::PARAM_INT);
             $stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
-                $this->nom = $row['nom'];
-                $this->adresse = $row['adresse'];
-                $this->telephone = $row['telephone'];
-                $this->email = $row['email'];
+                $this->idclient = $row['idclient'];
+                $this->nomclient = $row['nomclient'];
+                $this->adresseclient = $row['adresseclient'];
+                $this->telephoneclient = $row['telephoneclient'];
+                $this->emailclient = $row['emailclient'];
                 $this->libcommune = $row['libcommune'];
                 $this->cpcommune = $row['cpcommune'];
-                $this->prefixe = $row['prefixe'];
+                $this->prefixeclient = $row['prefixeclient'];
                 $this->indicprospect = $row['indicprospect'];
                 $this->iban = $row['iban'];
                 $this->bic = $row['bic'];
@@ -127,21 +122,21 @@
 
         Public function DelBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE tiers SET suptiers = 1 WHERE idtiers = :idtiers');
-            $stmt->bindValue(':idtiers',$this->idtiers, PDO::PARAM_STR);
+            $stmt = $pdo->prepare('UPDATE client SET supclient = 1 WHERE idclient = :idclient');
+            $stmt->bindValue(':idclient',$this->idclient, PDO::PARAM_STR);
             $stmt->execute();
         }
 
         Public function SaveBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE tiers SET typetiers = :typetiers, nom = :nom, adresse = :adresse, telephone = :telephone, email = :email, idcommune = :idcommune, prefixe= :prefixe, indicprospect = :indicprospect, iban = :iban, bic = :bic, codebanque = :codebanque, codeguichet = :codeguichet, ncompte = :ncompte, clerib = :clerib, domiciliation = :domiciliation, tel2 = :tel2, idtarif = :idtarif, idpaiement = :idpaiement WHERE idtiers = :idtiers');
-            $stmt->bindValue(':typetiers',$this->typetiers, PDO::PARAM_INT);
-            $stmt->bindValue(':nom',$this->nom, PDO::PARAM_STR);
-            $stmt->bindValue(':adresse',$this->adresse, PDO::PARAM_STR);
-            $stmt->bindValue(':telephone',$this->telephone, PDO::PARAM_STR);
-            $stmt->bindValue(':email',$this->email, PDO::PARAM_STR);
+            $stmt = $pdo->prepare('UPDATE client SET nomclient = :nomclient, adresseclient = :adresseclient, telephoneclient = :telephoneclient, emailclient = :emailclient, idcommune = :idcommune, prefixeclient= :prefixeclient, indicprospect = :indicprospect, iban = :iban, bic = :bic, codebanque = :codebanque, codeguichet = :codeguichet, ncompte = :ncompte, clerib = :clerib, domiciliation = :domiciliation, tel2 = :tel2, idtarif = :idtarif, idpaiement = :idpaiement WHERE idclient = :idclient');
+            $stmt->bindValue(':idclient',$this->idclient, PDO::PARAM_STR);
+            $stmt->bindValue(':nomclient',$this->nomclient, PDO::PARAM_STR);
+            $stmt->bindValue(':adresseclient',$this->adresseclient, PDO::PARAM_STR);
+            $stmt->bindValue(':telephoneclient',$this->telephoneclient, PDO::PARAM_STR);
+            $stmt->bindValue(':emailclient',$this->emailclient, PDO::PARAM_STR);
             $stmt->bindValue(':idcommune',$this->idcommune, PDO::PARAM_INT);
-            $stmt->bindValue(':prefixe',$this->prefixe, PDO::PARAM_STR);
+            $stmt->bindValue(':prefixeclient',$this->prefixeclient, PDO::PARAM_STR);
             $stmt->bindValue(':indicprospect',$this->indicprospect, PDO::PARAM_INT);
             $stmt->bindValue(':iban',$this->iban, PDO::PARAM_INT);
             $stmt->bindValue(':bic',$this->bic, PDO::PARAM_STR);
@@ -158,17 +153,16 @@
 
         Public function AddBDD($pdo)
         {
-            $stmt = $pdo->prepare("INSERT INTO tiers (idtiers, typetiers, nom, adresse, telephone, email, idcommune, prefixe, indicprospect, iban, bic, codebanque, codeguichet, ncompte, clerib, domiciliation, tel2, idtarif, idpaiement, suptiers) VALUES (NULL, 0, :nom, :adresse, :telephone, :email, :idcommune, :prefixe, :indicprospect, :iban, :bic, :codebanque, :codeguichet, :ncompte, :clerib, :domiciliation, :tel2, :idtarif, :idpaiement, 0);");
+            $stmt = $pdo->prepare("INSERT INTO client (idclient, nomclient, adresseclient, telephoneclient, emailclient, idcommune, prefixeclient, indicprospect, iban, bic, codebanque, codeguichet, ncompte, clerib, domiciliation, tel2, idtarif, idpaiement, supclient) VALUES (NULL, :nomclient, :adresseclient, :telephoneclient, :emailclient, :idcommune, :prefixeclient, :indicprospect, :iban, :bic, :codebanque, :codeguichet, :ncompte, :clerib, :domiciliation, :tel2, :idtarif, :idpaiement, 0);");
             //  var_dump($stmt);
             // var_dump($this);
             // die(); 
-            $stmt->bindValue(':typetiers',$this->typetiers, PDO::PARAM_INT);
-            $stmt->bindValue(':nom',$this->nom, PDO::PARAM_STR);
-            $stmt->bindValue(':adresse',$this->adresse, PDO::PARAM_STR);
-            $stmt->bindValue(':telephone',$this->telephone, PDO::PARAM_STR);
-            $stmt->bindValue(':email',$this->email, PDO::PARAM_STR);
+            $stmt->bindValue(':nomclient',$this->nomclient, PDO::PARAM_STR);
+            $stmt->bindValue(':adresseclient',$this->adresseclient, PDO::PARAM_STR);
+            $stmt->bindValue(':telephoneclient',$this->telephoneclient, PDO::PARAM_STR);
+            $stmt->bindValue(':emailclient',$this->emailclient, PDO::PARAM_STR);
             $stmt->bindValue(':idcommune',$this->idcommune, PDO::PARAM_INT);
-            $stmt->bindValue(':prefixe',$this->prefixe, PDO::PARAM_STR);
+            $stmt->bindValue(':prefixeclient',$this->prefixeclient, PDO::PARAM_STR);
             $stmt->bindValue(':indicprospect',$this->indicprospect, PDO::PARAM_INT);
             $stmt->bindValue(':iban',$this->iban, PDO::PARAM_INT);
             $stmt->bindValue(':bic',$this->bic, PDO::PARAM_STR);
@@ -187,7 +181,7 @@
 
         Public function CountBDD($pdo)
         {
-            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM tiers WHERE suptiers = 0 AND typetiers = 0");
+            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM client WHERE supclient = 0");
             $stmt->execute();
             $records = $stmt->fetch();
             return $records['allcount'];
@@ -195,7 +189,7 @@
 
         Public function CountParamBDD($pdo,$searchQuery,$searchArray)
         {
-            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM tiers WHERE suptiers = 0 AND typetiers = 0" . $searchQuery);
+            $stmt = $pdo->prepare("SELECT COUNT(*) AS allcount FROM client WHERE supclient = 0" . $searchQuery);
             $stmt->execute($searchArray);
             $records = $stmt->fetch();
             return $records['allcount'];
