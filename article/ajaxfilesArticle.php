@@ -65,6 +65,7 @@ foreach ($empRecords as $row) {
             "reffour" => $row['reffour'],
             "genrod" => $row['genrod'],
             "frais" => $row['frais'],
+            "idtarif" => $row['idtarif'],
             "qtecdefou" => $row['qtecdefou'],
             "qtestock" => $row['qtestock'],	
             "cptac" => $row['cptac'],

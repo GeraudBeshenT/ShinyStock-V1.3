@@ -7,6 +7,8 @@
 		Private $reffour;
 		Private $genrod;
 		Private $frais;
+        Private $idtarif;
+        Private $libtarif;
 		Private $qtecdefou;
 		Private $qtestock;
 		Private $cptac;
@@ -19,7 +21,7 @@
 		Private $idcategorie;
 		Private $libcategorie;
 
-		Public function __construct(string $idarticle='', string $libarticle='', string $sousfam='', string $reffour='', string $genrod='', string $frais='', string $qtecdefou='', string $qtestock='', string $cptac='', string $cptvem='', string $cptvec='', string $cptveom='', string $cptvee='', string $cptvecee='', string $commentaire='', string $idcategorie='')
+		Public function __construct(string $idarticle='', string $libarticle='', string $sousfam='', string $reffour='', string $genrod='', string $frais='', string $idtarif = '', string $qtecdefou='', string $qtestock='', string $cptac='', string $cptvem='', string $cptvec='', string $cptveom='', string $cptvee='', string $cptvecee='', string $commentaire='', string $idcategorie='')
 		{
 			$this->idarticle = $idarticle;
 			$this->libarticle = $libarticle;
@@ -27,6 +29,7 @@
 			$this->reffour = $reffour;
 			$this->genrod = $genrod;
 			$this->frais = $frais;
+            $this->idtarif = $idtarif;
 			$this->qtecdefou = $qtecdefou;
 			$this->qtestock = $qtestock;
 			$this->cptac = $cptac;
@@ -46,6 +49,8 @@
 		Public function Getreffour(){return $this->reffour;}
 		Public function Getgenrod(){return $this->genrod;}
 		Public function Getfrais(){return $this->frais;}
+		Public function Getidtarif(){return $this->idtarif;}
+		Public function Getlibtarif(){return $this->libtarif;}
 		Public function Getqtecdefou(){return $this->qtecdefou;}
 		Public function Getqtestock(){return $this->qtestock;}
 		Public function Getcptac(){return $this->cptac;}
@@ -64,6 +69,7 @@
 		Public function Setreffour($e){$this->reffour = $e;}
 		Public function Setgenrod($e){$this->genrod = $e;}
 		Public function Setfrais($e){$this->frais = $e;}
+		Public function Setidtarif(int $e){$this->idtarif;}
 		Public function Setqtecdefou($e){$this->qtecdefou = $e;}
 		Public function Setqtestock($e){$this->qtestock = $e;}
 		Public function Setcptac($e){$this->cptac = $e;}
@@ -81,7 +87,8 @@
 			$stmt = $pdo->prepare('SELECT *
 				FROM article
 				INNER JOIN categorie ON article.idcategorie=categorie.idcategorie
-				WHERE idarticle = :idarticle ORDER BY idarticle');
+                INNER JOIN tarif ON article.idtarif=tarif.idtarif
+				WHERE suparticle = 0 AND idarticle = :idarticle');
 			$stmt->bindValue(':idarticle',$this->idarticle, PDO::PARAM_STR);
 			$stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
@@ -90,6 +97,7 @@
 			$this->reffour = $row['reffour'];
 			$this->genrod = $row['genrod'];
 			$this->frais = $row['frais'];
+			$this->libtarif = $row['libtarif'];
 			$this->qtecdefou = $row['qtecdefou'];
 			$this->qtestock = $row['qtestock'];
 			$this->cptac = $row['cptac'];
@@ -112,13 +120,14 @@
 
 		Public function SaveBDD($pdo)
 		{
-			$stmt = $pdo->prepare("UPDATE article SET libarticle=:libarticle, sousfam=:sousfam, reffour=:reffour, genrod=:genrod, frais=:frais, qtecdefou=:qtecdefou, qtestock=:qtestock, cptac=:cptac, cptvem=:cptvem, cptvec=:cptvec, cptveom=:cptveom, cptvee=:cptvee, cptvecee=:cptvecee, commentaire=:commentaire, idcategorie=:idcategorie WHERE idarticle = :idarticle");
+			$stmt = $pdo->prepare("UPDATE article SET libarticle=:libarticle, sousfam=:sousfam, reffour=:reffour, genrod=:genrod, frais=:frais, idtarif=:idtarif, qtecdefou=:qtecdefou, qtestock=:qtestock, cptac=:cptac, cptvem=:cptvem, cptvec=:cptvec, cptveom=:cptveom, cptvee=:cptvee, cptvecee=:cptvecee, commentaire=:commentaire, idcategorie=:idcategorie WHERE idarticle = :idarticle");
 			$stmt->bindValue(':idarticle',$this->idarticle, PDO::PARAM_STR);
 			$stmt->bindValue(':libarticle',$this->libarticle, PDO::PARAM_STR);
 			$stmt->bindValue(':sousfam',$this->sousfam, PDO::PARAM_STR);
 			$stmt->bindValue(':reffour',$this->reffour, PDO::PARAM_STR);
 			$stmt->bindValue(':genrod',$this->genrod, PDO::PARAM_STR);
 			$stmt->bindValue(':frais',$this->frais, PDO::PARAM_STR);
+			$stmt->bindValue(':idtarif',$this->idtarif, PDO::PARAM_STR);
 			$stmt->bindValue(':qtecdefou',$this->qtecdefou, PDO::PARAM_STR);
 			$stmt->bindValue(':qtestock',$this->qtestock, PDO::PARAM_STR);
 			$stmt->bindValue(':cptac',$this->cptac, PDO::PARAM_STR);
@@ -134,7 +143,7 @@
 
 		Public function AddBDD($pdo)
 		{
-			$stmt = $pdo->prepare("INSERT INTO article (idarticle, libarticle, sousfam, reffour, genrod, frais, qtecdefou, qtestock, cptac, cptvem, cptvec, cptveom, cptvee, cptvecee, commentaire, idcategorie, suparticle) VALUES (NULL, :libarticle, :sousfam, :reffour, :genrod, :frais, :qtecdefou, :qtestock, :cptac, :cptvem, :cptvec, :cptveom, :cptvee, :cptvecee, :commentaire, :idcategorie, 0);");
+			$stmt = $pdo->prepare("INSERT INTO article (idarticle, libarticle, sousfam, reffour, genrod, frais, idtarif, qtecdefou, qtestock, cptac, cptvem, cptvec, cptveom, cptvee, cptvecee, commentaire, idcategorie, suparticle) VALUES (NULL, :libarticle, :sousfam, :reffour, :genrod, :frais, :idtarif, :qtecdefou, :qtestock, :cptac, :cptvem, :cptvec, :cptveom, :cptvee, :cptvecee, :commentaire, :idcategorie, 0);");
 			/* var_dump($stmt);
             var_dump($this);
             die(); */
@@ -143,6 +152,7 @@
 			$stmt->bindValue(':reffour',$this->reffour, PDO::PARAM_STR);
 			$stmt->bindValue(':genrod',$this->genrod, PDO::PARAM_STR);
 			$stmt->bindValue(':frais',$this->frais, PDO::PARAM_STR);
+			$stmt->bindValue(':idtarif',$this->idtarif, PDO::PARAM_STR);
 			$stmt->bindValue(':qtecdefou',$this->qtecdefou, PDO::PARAM_STR);
 			$stmt->bindValue(':qtestock',$this->qtestock, PDO::PARAM_STR);
 			$stmt->bindValue(':cptac',$this->cptac, PDO::PARAM_STR);

@@ -17,20 +17,20 @@
 	include '../all.class.inc.php';
 	if ($_POST['action'] == 'modifier')
 	{
-		$ob = new Document($_POST['iddocumentclient']);
+		$ob = new Documentclient($_POST['iddocumentclient']);
 		$ob->GetByID($conn);
 		$action = 'modifier';
 			echo "<p class='size-18 text-center'><b>Modifier le bon de commande ",$ob->Getiddocumentclient(), "</p><br>";
 	}
 	else
 	{
-		$ob = new Document();
+		$ob = new Documentclient();
 		$action = 'ajouter';
 			echo "<p class='size-18 text-center'><b> Ajouter un bon de commande </b></p><br>";
 	}
 ?>
 <div class="container">
-<form method='POST' action='traitementdocument.php'>
+<form method='POST' action='traitementdocumentclient.php'>
   <div class="row">
 	<input name='iddocumentclient' type='hidden' value="<?php echo $ob->Getiddocumentclient(); ?>"/>
 		<div class="col-6">Date:
@@ -54,7 +54,7 @@
     </div>
   </div>
 	<input name='action' type='hidden' value="<?php echo $action; ?>"/>
-	<a class='button bg_dark-radius_6' href="document.vue.php">Retour</a>
+	<a class='button bg_dark-radius_6' href="documentclient.vue.php">Retour</a>
 	<button type='submit' class='button bg_green-radius_6'>Sauvegarder</button>
 </form>
 </div>

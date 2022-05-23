@@ -9,6 +9,7 @@
 	  <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/scriptcategorie.js"></script>
+		<script type="text/javascript" src="../js/scripttarif.js"></script>
 </head>
 <body>
 <br><div class="container bg-light">
@@ -51,6 +52,12 @@
 	           		frais: 
 	           		<input name='frais' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getfrais(); ?>' required /><br>
 	           	</div>
+	           	<div class="col-6 text-bold">
+	           		Tarif:
+                    <input type="text" id="nom_idtarif" onkeyup="autocompletT()" placeholder="Format numérique" value='<?php echo $ob->Getlibtarif(); ?>' required/>
+                    <input type="hidden" id="nomtarif_idtarif" name="idtarif" value='<?php echo $ob->Getidtarif(); ?>'>
+                    <ul id="nom_list_idtarif"></ul>
+                </div>
 	           	<div class="col-6 text-bold">
 	           		qtecdefou: 
 	           		<input name='qtecdefou' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getqtecdefou(); ?>' required /><br>

@@ -3,16 +3,16 @@
     <title>uv-light - Document</title>
     <body>
         <?php
-            include '../header.inc.php';
-            include '../bdd.class.inc.php';
+            include '../../header.inc.php';
+            include '../../bdd.class.inc.php';
         ?>
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Document</h1>
+            <h1 class="h2">Bons de commande Fournisseurs</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-toolbar mb-2 mb-md-0">
-              <form method='POST' action='modifDocument.php'>
+              <form method='POST' action='modifDetailfournisseur.php'>
                 <input name='action' type='hidden' value="ajouter"/>
                 <button type='submit' class='btn btn-secondary'>Ajouter</button>
               </form>  &nbsp
@@ -23,20 +23,18 @@
         <script type="text/javascript">
             
             $(document).ready(function () {
-                $('#Document').DataTable({
+                $('#detail').DataTable({
                     'processing': true,
                     'serverSide': true,
                     'serverMethod': 'post',
                     'ajax': {
-                        'url': 'ajaxfilesDocument.php',
+                        'url': 'ajaxfilesdetailfournisseur.php',
                     },
                     'columns': [
-                        {data: 'iddocument'},
-                        {data: 'datedoc'},
-                        {data: 'commentaire'},
-                        {data: 'statut'},
-                        {data: 'libetat'},
-                        {data: 'nomfournisseur'},
+                        {data: 'iddetailfournisseur'},
+                        {data: 'idarticle'},
+                        {data: 'iddocumentfournisseur'},
+                        {data: 'qteachat'},
                         {data: 'actions'}
                     ],
                 });
@@ -44,16 +42,14 @@
             
         </script>
         <div class="container"><br>
-            <table id = 'Document' class = 'display dataTable text-center '>
+            <table id = 'detail' class = 'display dataTable text-center '>
                 <thead>
                     <tr>
                         <th>id</th>
-                        <th>date</th>
-                        <th>commentaire</th>
-                        <th>statut</th>
-                        <th>id état</th>
-                        <th>id tiers</th>
-                        <th>ACTIONS</th>
+                        <th>Article</th>
+                        <th>document</th>
+                        <th>quantité acheté</th>
+                        <th>plus</th>
                     </tr>
                 </thead>
             </table>    
@@ -66,7 +62,7 @@
 
     
     <?php
-        include '../footer.inc.php';
+        include '../../footer.inc.php';
     ?>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 </html>

@@ -107,9 +107,15 @@
             </h6>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
-                <a class="nav-link" href="../document/document.vue.php">
+                <a class="nav-link" href="../documentfournisseur/documentfournisseur.vue.php">
                   <span data-feather="file-text"></span>
-                    Commande
+                    Bons de commande fournisseurs
+                </a>
+            <ul class="nav flex-column mb-2">
+              <li class="nav-item">
+                <a class="nav-link" href="../documentclient/documentclient.vue.php">
+                  <span data-feather="file-text"></span>
+                    Bons de commande clients
                 </a>
                 <!-- <a class="nav-link" href="../document.vue.php">
                   <span data-feather="file-text"></span>

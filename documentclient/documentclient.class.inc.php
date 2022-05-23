@@ -1,5 +1,5 @@
 <?php
-    class Document
+    class Documentclient
     {
         Private $iddocumentclient;
         Private $datedocclient;

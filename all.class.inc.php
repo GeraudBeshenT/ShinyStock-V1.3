@@ -5,7 +5,9 @@
 	include 'categorie/categorie.class.inc.php';
 	include 'client/client.class.inc.php';
 	include 'commune/commune.class.inc.php';
-	include 'document/document.class.inc.php';
+	include 'documentfournisseur/bdcfournisseur/detailfournisseur.class.inc.php';
+	include 'documentfournisseur/documentfournisseur.class.inc.php';
+	include 'documentclient/documentclient.class.inc.php';
 	include 'etat/etat.class.inc.php';
 	include 'fournisseur/fournisseur.class.inc.php';
 	include 'Paiement/paiement.class.inc.php';

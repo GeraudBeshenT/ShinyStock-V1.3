@@ -27,7 +27,7 @@ if ($searchValue != '') {
     );
 }
 
-$ob = new Document();
+$ob = new Documentclient();
 
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);

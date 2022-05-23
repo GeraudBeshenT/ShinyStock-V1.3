@@ -7,7 +7,7 @@
 			include 'header.inc.php';
 			include '../bdd/bdd.class.inc.php';
             include '../class/all.class.inc.php';
-            $ob = new Document();
+            $ob = new Documentclient();
 		?>
 
          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
@@ -15,7 +15,7 @@
 		<?php
 				if ($_GET['action'] == 'voir')
 				{
-					$ob = new Document($_GET['id']);
+					$ob = new Documentclient($_GET['id']);
 					$ob->GetByID($conn);
 					$action = 'voir';
 						echo "<p class='size-18 text-center'><b>Consulter les données de ",$ob->GetID(), "</b></p><br>";
