@@ -8,8 +8,8 @@
   <link rel="stylesheet" type="text/css" href="../css/GSS/css/styler1-text.css">
   <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
-		<script type="text/javascript" src="../js/scriptetat.js"></script>
-		<script type="text/javascript" src="../js/scriptclient.js"></script>
+		<script type="text/javascript" src="../js/scriptarticle.js"></script>
+		<script type="text/javascript" src="../js/scriptdocument.js"></script>
 </head>
 <body>
 <br><div class="container bg-light">	
@@ -17,44 +17,39 @@
 	include '../all.class.inc.php';
 	if ($_POST['action'] == 'modifier')
 	{
-		$ob = new Documentclient($_POST['iddocumentclient']);
+		$ob = new Detailclient($_POST['iddetailfournisseur']);
 		$ob->GetByID($conn);
 		$action = 'modifier';
-			echo "<p class='size-18 text-center'><b>Modifier le bon de commande ",$ob->Getiddocumentclient(), "</p><br>";
+			echo "<p class='size-18 text-center'><b>Modifier le bon de commande ",$ob->Getiddetailfournisseur(), "</p><br>";
 	}
 	else
 	{
-		$ob = new Documentclient();
+		$ob = new Detailfournisseur();
 		$action = 'ajouter';
 			echo "<p class='size-18 text-center'><b> Ajouter un bon de commande </b></p><br>";
 	}
 ?>
 <div class="container">
-<form method='POST' action='traitementdocumentclient.php'>
+<form method='POST' action='traitementDetailfournisseur.php'>
   <div class="row">
-	<input name='iddocumentclient' type='hidden' value="<?php echo $ob->Getiddocumentclient(); ?>"/>
-		<div class="col-6">Date:
-			<input name='datedocclient' type='text' value="<?php echo $ob->Getdatedocclient(); ?>"/>
-		</div>
-		<div class="col-6">statut:
-			<input name='statutclient' type='text' value="<?php echo $ob->Getstatutclient(); ?>"/>
-		</div>
-		<div class="col-6">commentaire:
-			<input name='commentaireclient' type='text' value="<?php echo $ob->Getcommentaireclient(); ?>"/>
-		</div>
-	    <div class="col-6 text-bold">Etat:
-				<input name="libetat" type="text" id="nom_idetat" onkeyup="autocompletEtat()" value='<?php echo $ob->Getlibetat(); ?>' placeholder="libetat" required>
-				<input type="hidden" id="nom2_idetat" name="idetat" value='<?php echo $ob->Getidetat(); ?>'>
-				<ul id="nom_list_idetat"></ul>
-      </div>
-		<div class="col-6 text-bold">client:
-    	<input name="nomclient" type="text" id="nom_idclient" onkeyup="autocompletClient()" value='<?php echo $ob->Getnomclient(); ?>' placeholder="client" required/>
-      <input type="hidden" id="nom2_idclient" name="idclient" value='<?php echo $ob->Getidclient(); ?>'>
-      <ul id="nom_list_idclient"></ul>
+	<input name='iddetailfournisseur' type='hidden' value="<?php echo $ob->Getiddetailfournisseur(); ?>"/>
+	  <div class="col-6">
+	  Document concerné:
+      <input type="text" id="nom_iddocument" onkeyup="autocompletDocument()" placeholder="document" value='<?php echo $ob->Getdatedocfournisseur(); ?>' required>
+      <input type="hidden" id="nom2_iddocument" name="iddocumentfournisseur" value='<?php echo $ob->Getiddocumentfournisseur(); ?>'>
+      <ul id="nom_list_iddocument"></ul>
+    </div>	  <div class="col-6">
+	  Article:
+      <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->Getlibarticle(); ?>' required>
+      <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->Getidarticle(); ?>'>
+      <ul id="nom_list_idarticle"></ul>
     </div>
+		<div class="col-6">Quantité d'article:
+			<input name='qteachat' type='text' value="<?php echo $ob->Getqteachat(); ?>"/>
+		</div>
   </div>
 	<input name='action' type='hidden' value="<?php echo $action; ?>"/>
-	<a class='button bg_dark-radius_6' href="documentclient.vue.php">Retour</a>
+	<a class='button bg_dark-radius_6' href="documentfournisseur.vue.php">Retour</a>
 	<button type='submit' class='button bg_green-radius_6'>Sauvegarder</button>
 </form>
 </div>

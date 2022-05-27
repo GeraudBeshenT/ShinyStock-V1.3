@@ -24,7 +24,6 @@
 					echo "<p><b>- Client</b> : ", $ob->Getnomclient(),"</p>";
 					echo "<p><b>- Coordonnées</b> : ", $ob->Gettelephoneclient(), "&nbsp", $ob->Getemailclient(), "&nbsp", $ob->Gettel2(),"</p>";
                     echo "<p><b>- Adresse</b> : ", $ob->Getadresseclient(), "&nbsp", $ob->Getlibcommune(),"</p>";
-                    echo "<p><b>- Tarif indiqué</b> : ", $ob->Getlibtarif(),"</p>";
                     echo "<p><b>- Moyen de paiement</b> : ", $ob->Getlibpaiement(),"</p>";
 					echo "<p><b>- Indice prospect</b> : ", $ob->Getindicprospect(),"</p>";
 					echo "<p><b>- iban</b> : ", $ob->Getiban(),"</p>";

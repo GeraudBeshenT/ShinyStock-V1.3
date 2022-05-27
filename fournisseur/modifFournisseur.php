@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/scriptcommune.js"></script>
-		<script type="text/javascript" src="../js/scripttarif.js"></script>
 		<script type="text/javascript" src="../js/scriptpaiement.js"></script>
 		<script type="text/javascript" src="../js/scriptsociete.js"></script>
 </head>
@@ -35,19 +34,19 @@
 <form method='POST' action='traitementfournisseur.php'>
   <div class="row">
 	<input name='idfournisseur' type='hidden' value="<?php echo $ob->Getidfournisseur(); ?>"/>
-		<div class="col-6">Nom:
+		<div class="col-6">Nom fournisseur:
 			<input name='nomfournisseur' placeholder="Nom du fournisseur" type='text' value="<?php echo $ob->Getnomfournisseur(); ?>"/>
 		</div>
-		<div class="col-6">Adresse:
+		<div class="col-6">Adresse postale:
 			<input name='adressefournisseur' placeholder="adresse du fournisseur" type='text' value="<?php echo $ob->Getadressefournisseur(); ?>"/>
 		</div>
-		<div class="col-6">Téléphone:
+		<div class="col-6">N° de téléphone:
 			<input name='telephonefournisseur' placeholder="numéro de téléphone" type='text' value="<?php echo $ob->Gettelephonefournisseur(); ?>"/>
 		</div>
-		<div class="col-6">Email:
+		<div class="col-6">Adresse email:
 			<input name='emailfournisseur' placeholder="adresse mail" type='text' value="<?php echo $ob->Getemailfournisseur(); ?>"/>
 		</div>
-	    <div class="col-6">Commune:
+	    <div class="col-6">Ville:
 				<input name="libcommune" type="text" id="nom_id" onkeyup="autocompletC()" value='<?php echo $ob->Getlibcommune(); ?>' placeholder="commune" required>
 				<input name="idcommune" type="hidden" id="nom2_id" name="idcommune" value='<?php echo $ob->Getidcommune(); ?>'>
 				<ul id="nom_list_id"></ul>
@@ -55,22 +54,17 @@
 		<div class="col-6">Préfixe:
 			<input name='prefixefournisseur' placeholder="préfixe" type='text' value="<?php echo $ob->Getprefixefournisseur(); ?>"/>
 		</div>
-		<div class="col-6">Tarif:
-    	<input type="text" id="nom_idtarif" onkeyup="autocompletT()" placeholder="tarif proposé" value='<?php echo $ob->Getlibtarif(); ?>' required/>
-      <input type="hidden" id="nomtarif_idtarif" name="idtarif" value='<?php echo $ob->Getidtarif(); ?>'>
-      <ul id="nom_list_idtarif"></ul>
-    </div>
 		<div class="col-6">Société:
 			<input type="text" id="nom_idsociete" onkeyup="autocompletS()" placeholder="type de société" value='<?php echo $ob->Getlibsociete(); ?>' required>
       <input type="hidden" id="nom2_idsociete" name="idsociete" value='<?php echo $ob->Getidsociete(); ?>'>
       <ul id="nom_list_idsociete"></ul>
     </div>
-	  <div class="col-6">Paiement:
+	  <div class="col-6">Type de paiement:
 			<input type="text" id="nom_idpaiement" onkeyup="autocompletP()" placeholder="Type de paiement" value='<?php echo $ob->GetlibPaiement(); ?>' required>
       <input type="hidden" id="nom2_idpaiement" name="idpaiement" value='<?php echo $ob->GetidPaiement(); ?>'>
       <ul id="nom_list_idpaiement"></ul>
     </div>
-		<div class="col-6">Code:
+		<div class="col-6">Code fournisseur:
 			<input name='codefournisseur' placeholder="code (format numérique)" type='text' value="<?php echo $ob->Getcodefournisseur(); ?>"/>
 		</div>
   </div>

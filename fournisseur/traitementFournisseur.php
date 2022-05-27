@@ -11,7 +11,7 @@
 	switch ($_POST['action']) 
 	{
 		case 'ajouter':
-			$ob = new Fournisseur($_POST['idfournisseur'],$_POST['nomfournisseur'],$_POST['adressefournisseur'],$_POST['telephonefournisseur'],$_POST['emailfournisseur'],$_POST['idcommune'],$_POST['prefixefournisseur'],$_POST['idtarif'],$_POST['idsociete'],$_POST['idpaiement'],$_POST['codefournisseur']);
+			$ob = new Fournisseur($_POST['idfournisseur'],$_POST['nomfournisseur'],$_POST['adressefournisseur'],$_POST['telephonefournisseur'],$_POST['emailfournisseur'],$_POST['idcommune'],$_POST['prefixefournisseur'],$_POST['idsociete'],$_POST['idpaiement'],$_POST['codefournisseur']);
 			$ob->AddBDD($conn);
 			header("Location: fournisseur.vue.php");
 			break;
@@ -23,7 +23,7 @@
 			break;
 
 		case 'modifier':
-			$ob = new Fournisseur($_POST['idfournisseur'],$_POST['nomfournisseur'],$_POST['adressefournisseur'],$_POST['telephonefournisseur'],$_POST['emailfournisseur'],$_POST['idcommune'],$_POST['prefixefournisseur'],$_POST['idtarif'],$_POST['idsociete'],$_POST['idpaiement'],$_POST['codefournisseur']);
+			$ob = new Fournisseur($_POST['idfournisseur'],$_POST['nomfournisseur'],$_POST['adressefournisseur'],$_POST['telephonefournisseur'],$_POST['emailfournisseur'],$_POST['idcommune'],$_POST['prefixefournisseur'],$_POST['idsociete'],$_POST['idpaiement'],$_POST['codefournisseur']);
 			$ob->SaveBDD($conn);
 			header("Location: fournisseur.vue.php");
 			break;

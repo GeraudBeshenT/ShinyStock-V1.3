@@ -53,7 +53,7 @@
                 <thead>
                     <tr>
                         <th>libarticle</th>
-                        <th>Qte_stock</th>
+                        <th>Quantité en stock</th>
                         <th>Quantité commandé au fournisseur</th>
                         <!-- <th>Commentaire</th> -->
 						<th>Description</th>

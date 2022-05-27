@@ -32,7 +32,7 @@
                         'url': 'ajaxfilesClient.php',
                     },
                     'columns': [
-                        {data: 'idclient'},
+                        // {data: 'idclient'},
                         {data: 'nomclient'},
                         {data: 'adresseclient'},
                         {data: 'emailclient'},
@@ -48,7 +48,7 @@
             <table id = 'Client' class = 'display dataTable text-center '>
                 <thead>
                     <tr>
-                        <th>id Client</th>
+                        <!-- <th>id Client</th> -->
                         <th>Client</th>
                         <th>Adresse</th>
                         <th>Email</th>

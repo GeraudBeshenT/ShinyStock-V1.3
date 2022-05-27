@@ -34,7 +34,7 @@ $ob = new Client();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM client INNER JOIN commune ON commune.idcommune = client.idcommune INNER JOIN tarif ON tarif.idtarif = client.idtarif INNER JOIN paiement ON paiement.idpaiement = client.idpaiement WHERE supclient = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM client INNER JOIN commune ON commune.idcommune = client.idcommune INNER JOIN paiement ON paiement.idpaiement = client.idpaiement WHERE supclient = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
@@ -56,19 +56,6 @@ foreach ($empRecords as $row) {
             "telephoneclient" => $row['telephoneclient'],
 			"emailclient" => $row['emailclient'],
 			"libcommune" => $row['libcommune'],
-            // "prefixeclient" => $row['prefixeclient'],
-            // "indicprospect" => $row['indicprospect'],
-            // "iban" => $row['iban'],
-            // "bic" => $row['bic'],
-            // "codebanque" => $row['codebanque'],
-            // "codeguichet" => $row['codeguichet'],
-            // "ncompte" => $row['ncompte'],
-            // "clerib" => $row['clerib'],
-            // "domiciliation" => $row['domiciliation'],
-            // "tel2" => $row['tel2'],
-            // "libtarif" => $row['libtarif'],
-            // "libpaiement" => $row['libpaiement'],
-            // "libtarif" => $row['libtarif'],
             "actions" => "<div class='btn-group'>"
             // bouton détail
             . "<form method='POST' action='client.php'>"

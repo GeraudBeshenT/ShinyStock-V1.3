@@ -37,7 +37,9 @@
                         {data: 'statutclient'},
                         {data: 'libetat'},
                         {data: 'nomclient'},
-                        {data: 'actions'}
+                        {data: 'detail'},
+                        {data: 'actions'},
+                        {data: 'export'}
                     ],
                 });
             });
@@ -47,13 +49,15 @@
             <table id = 'Document' class = 'display dataTable text-center '>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>date</th>
-                        <th>commentaire</th>
-                        <th>statut</th>
+                        <th>Référence</th>
+                        <th>Date</th>
+                        <th>Commentaire</th>
+                        <th>Statut</th>
                         <th>Etat</th>
                         <th>Client</th>
-                        <th>ACTIONS</th>
+                        <th>Détails</th>
+                        <th>Actions</th>
+                        <th>Exporter</th>
                     </tr>
                 </thead>
             </table>    

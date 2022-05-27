@@ -37,8 +37,9 @@
                         {data: 'statutfournisseur'},
                         {data: 'libetat'},
                         {data: 'nomfournisseur'},
+                        {data: 'detail'},
                         {data: 'actions'},
-                        {data: 'plus'}
+                        {data: 'export'}
                     ],
                 });
             });
@@ -48,14 +49,15 @@
             <table id = 'Document' class = 'display dataTable text-center '>
                 <thead>
                     <tr>
-                        <th>id</th>
-                        <th>date</th>
-                        <th>commentaire</th>
-                        <th>statut</th>
+                        <th>Référence</th>
+                        <th>Date</th>
+                        <th>Commentaire</th>
+                        <th>Statut</th>
                         <th>Etat</th>
-                        <th>fournisseur</th>
-                        <th>actions</th>
-                        <th>plus</th>
+                        <th>Fournisseur</th>
+                        <th>Détails</th>
+                        <th>Actions</th>
+                        <th>Exporter</th>
                     </tr>
                 </thead>
             </table>    

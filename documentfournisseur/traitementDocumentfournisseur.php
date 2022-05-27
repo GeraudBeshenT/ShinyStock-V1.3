@@ -11,7 +11,7 @@
 	switch ($_POST['action']) 
 	{
 		case 'ajouter':
-			$ob = new Documentfournisseur($_POST['iddocumentfournisseur'],$_POST['datedocfournisseur'],$_POST['commentairefournisseur'],$_POST['statutfournisseur'],$_POST['idetat'],$_POST['idfournisseur']);
+			$ob = new Documentfournisseur(0,$_POST['datedocfournisseur'],$_POST['commentairefournisseur'],$_POST['statutfournisseur'],$_POST['idetat'],$_POST['idfournisseur']);
 			$ob->AddBDD($conn);
 			header("Location: documentfournisseur.vue.php");
 			break;

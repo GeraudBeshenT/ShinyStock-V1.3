@@ -18,12 +18,10 @@
         Private $clerib;
         Private $domiciliation;
         Private $tel2;
-        Private $idtarif;
-        Private $libtarif;
         Private $idpaiement;
         Private $libpaiement;
 
-		Public function __construct( string $idclient = '', string $nomclient = '', string $adresseclient = '', string $telephoneclient = '', string $emailclient = '', string $idcommune = '', string $prefixeclient = '', string $indicprospect = '', string $iban = '', string $bic = '', string $codebanque = '', string $codeguichet = '', string $ncompte = '', string $clerib = '', string $domiciliation = '', string $tel2 = '', string $idtarif = '', string $idpaiement = '')
+		Public function __construct( string $idclient = '', string $nomclient = '', string $adresseclient = '', string $telephoneclient = '', string $emailclient = '', string $idcommune = '', string $prefixeclient = '', string $indicprospect = '', string $iban = '', string $bic = '', string $codebanque = '', string $codeguichet = '', string $ncompte = '', string $clerib = '', string $domiciliation = '', string $tel2 = '', string $idpaiement = '')
 		{
             $this->idclient = $idclient;
             $this->nomclient = $nomclient;
@@ -41,7 +39,6 @@
             $this->clerib = $clerib;
             $this->domiciliation = $domiciliation;
             $this->tel2 = $tel2;
-            $this->idtarif = $idtarif;
             $this->idpaiement = $idpaiement;
 		}
 
@@ -63,8 +60,6 @@
 		Public function Getclerib(){return $this->clerib;}
 		Public function Getdomiciliation(){return $this->domiciliation;}
 		Public function Gettel2(){return $this->tel2;}
-		Public function Getidtarif(){return $this->idtarif;}
-		Public function Getlibtarif(){return $this->libtarif;}
 		Public function Getidpaiement(){return $this->idpaiement;}
 		Public function Getlibpaiement(){return $this->libpaiement;}
 
@@ -84,15 +79,14 @@
 		Public function Setclerib(string $e){$this->clerib;}
 		Public function Setdomiciliation(string $e){$this->domiciliation;}
 		Public function Settel2(string $e){$this->tel2;}
-		Public function Setidtarif(int $e){$this->idtarif;}
 		Public function Setidpaiement(int $e){$this->idpaiement;}
+
 
 		Public function GetByID($pdo)
         {
             $stmt = $pdo->prepare('SELECT *
                 FROM client
                 INNER JOIN commune ON client.idcommune=commune.idcommune
-                INNER JOIN tarif ON client.idtarif=tarif.idtarif
                 INNER JOIN paiement ON client.idpaiement=paiement.idpaiement
                 WHERE supclient = 0 AND idclient = :idclient;');
             $stmt->bindValue(':idclient',$this->idclient, PDO::PARAM_INT);
@@ -115,7 +109,6 @@
                 $this->clerib = $row['clerib'];
                 $this->domiciliation = $row['domiciliation'];
                 $this->tel2 = $row['tel2'];
-                $this->libtarif = $row['libtarif'];
                 $this->libpaiement = $row['libpaiement'];
             }
         }
@@ -129,7 +122,7 @@
 
         Public function SaveBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE client SET nomclient = :nomclient, adresseclient = :adresseclient, telephoneclient = :telephoneclient, emailclient = :emailclient, idcommune = :idcommune, prefixeclient= :prefixeclient, indicprospect = :indicprospect, iban = :iban, bic = :bic, codebanque = :codebanque, codeguichet = :codeguichet, ncompte = :ncompte, clerib = :clerib, domiciliation = :domiciliation, tel2 = :tel2, idtarif = :idtarif, idpaiement = :idpaiement WHERE idclient = :idclient');
+            $stmt = $pdo->prepare('UPDATE client SET nomclient = :nomclient, adresseclient = :adresseclient, telephoneclient = :telephoneclient, emailclient = :emailclient, idcommune = :idcommune, prefixeclient= :prefixeclient, indicprospect = :indicprospect, iban = :iban, bic = :bic, codebanque = :codebanque, codeguichet = :codeguichet, ncompte = :ncompte, clerib = :clerib, domiciliation = :domiciliation, tel2 = :tel2 WHERE idclient = :idclient');
             $stmt->bindValue(':idclient',$this->idclient, PDO::PARAM_STR);
             $stmt->bindValue(':nomclient',$this->nomclient, PDO::PARAM_STR);
             $stmt->bindValue(':adresseclient',$this->adresseclient, PDO::PARAM_STR);
@@ -146,14 +139,13 @@
             $stmt->bindValue(':clerib',$this->clerib, PDO::PARAM_STR);
             $stmt->bindValue(':domiciliation',$this->domiciliation, PDO::PARAM_STR);
             $stmt->bindValue(':tel2',$this->tel2, PDO::PARAM_STR);
-            $stmt->bindValue(':idtarif',$this->idtarif, PDO::PARAM_INT);
             $stmt->bindValue(':idpaiement',$this->idpaiement, PDO::PARAM_INT);
             $stmt->execute();
         }
 
         Public function AddBDD($pdo)
         {
-            $stmt = $pdo->prepare("INSERT INTO client (idclient, nomclient, adresseclient, telephoneclient, emailclient, idcommune, prefixeclient, indicprospect, iban, bic, codebanque, codeguichet, ncompte, clerib, domiciliation, tel2, idtarif, idpaiement, supclient) VALUES (NULL, :nomclient, :adresseclient, :telephoneclient, :emailclient, :idcommune, :prefixeclient, :indicprospect, :iban, :bic, :codebanque, :codeguichet, :ncompte, :clerib, :domiciliation, :tel2, :idtarif, :idpaiement, 0);");
+            $stmt = $pdo->prepare("INSERT INTO client (idclient, nomclient, adresseclient, telephoneclient, emailclient, idcommune, prefixeclient, indicprospect, iban, bic, codebanque, codeguichet, ncompte, clerib, domiciliation, tel2, idpaiement, supclient) VALUES (NULL, :nomclient, :adresseclient, :telephoneclient, :emailclient, :idcommune, :prefixeclient, :indicprospect, :iban, :bic, :codebanque, :codeguichet, :ncompte, :clerib, :domiciliation, :tel2, :idpaiement, 0);");
             //  var_dump($stmt);
             // var_dump($this);
             // die(); 
@@ -172,7 +164,6 @@
             $stmt->bindValue(':clerib',$this->clerib, PDO::PARAM_STR);
             $stmt->bindValue(':domiciliation',$this->domiciliation, PDO::PARAM_STR);
             $stmt->bindValue(':tel2',$this->tel2, PDO::PARAM_STR);
-            $stmt->bindValue(':idtarif',$this->idtarif, PDO::PARAM_INT);
             $stmt->bindValue(':idpaiement',$this->idpaiement, PDO::PARAM_INT);
             $stmt->execute();
             return $stmt;

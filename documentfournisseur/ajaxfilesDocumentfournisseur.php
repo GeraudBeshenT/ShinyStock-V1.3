@@ -69,15 +69,24 @@ foreach ($empRecords as $row) {
                 . "<input name='iddocumentfournisseur' type='hidden' value='" . $row['iddocumentfournisseur'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
                 . "<input name='action' type='hidden' value='supprimer'/>"
-            . "</form></div>",
-            "plus" => "<div class='btn-group'>"
-            // bouton détail
-            . "<form method='POST' action='bdcfournisseur/detailfournisseur.vue.php'>"
-                . "<button type='submit' class='btn btn-info rounded-pill'><i class='fa fa-plus'></i></button>"
+            . "</form>"
+            . "</div>",
+            "detail" => "<div class='btn-group'>"
+            . "<form method='POST' action='detailfournisseur.vue.php?id=".$row['iddocumentfournisseur']."'>"
+                . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-eye'></i></button>"
+                . "<input name='type' type='hidden' value='Document'/>"
+                . "<input name='id' type='hidden' value='" . $row['iddocumentfournisseur'] . "'/>"
+                . "<input name='action' type='hidden' value='modifier'/>"
+            . "</form>"
+            . "</div>",
+            "export" => "<div class='btn-group'>"
+            . "<form method='POST' action='./FPDF/pdfarticles.php' target='_blank'>"
+                . "<button type='submit' class='btn btn-warning rounded-pill'>PDF</button>"
                 . "<input name='iddocumentfournisseur' type='hidden' value='" . $row['iddocumentfournisseur'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
-                . "<input name='action' type='hidden' value='voir'/>"
-            . "</form></div>",
+                . "<input name='action' type='hidden' value='modifier'/>"
+            . "</form>"
+            . "</div>",
         );
     }
 }

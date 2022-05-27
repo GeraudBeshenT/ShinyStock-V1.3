@@ -6,6 +6,8 @@
 	<link rel="stylesheet" type="text/css" href="../css/GSS/css/styler1-grid.css">
 	<link rel="stylesheet" type="text/css" href="../css/GSS/css/styler1-text.css">
 	<link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
+	<script type="text/javascript" src="../js/scriptarticle.js"></script>
+
 	<title> Shinystock - Produit </title>
 </head>
 <body>
@@ -14,10 +16,10 @@
 	include '../all.class.inc.php';
 	if ($_POST['action'] == 'modifier')
 	{
-		$ob = new Produit($_POST['id']);
-		$ob->GetProduitByID($conn);
+		$ob = new Produit($_POST['idproduit']);
+		$ob->GetByID($conn);
 		$action = 'modifier';
-		echo "<p class='size-18 text-center'><b>Modifier le produit ",$ob->Getnomarticle(), "</p><br>";
+		echo "<p class='size-18 text-center'><b>Modifier le produit ",$ob->Getlibproduit(), "</p><br>";
 	}
 	else
 	{
@@ -27,14 +29,17 @@
 	}
 ?>
 <form method='POST' action='traitementProduit.php'>
-	<input name='ID' type='hidden' value="<?php echo $ob->GetID(); ?>"/>
+	<input name='idproduit' type='hidden' value="<?php echo $ob->Getidproduit(); ?>"/>
 		<div class="row">
-           	<div class="col">Nom: 
-           		<input name='nom_article' type='text' value="<?php echo $ob->Getnomarticle(); ?>"/><br>
-			</div>
-           	<div class="col">Sous Fam: 
-           		<input name='sous_fam' type='text' value="<?php echo $ob->Getqtearticle(); ?>"/><br>
-           	</div>
+	           	<div class="col-6 text-bold">
+	           		Article:
+                    <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->Getlibarticle(); ?>' required>
+                    <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->Getidarticle(); ?>'>
+                    <ul id="nom_list_idarticle"></ul>
+                </div>
+		<div class="col-6">Quantité Article:
+			<input name='qtearticle' placeholder="adresse du fournisseur" type='text' value="<?php echo $ob->Getqtearticle(); ?>"/>
+		</div>
         </div>
 	<!-- Bouton de validation reprennant l'action ajouter ou modifier ! -->
 	<input name='action' type='hidden' value="<?php echo $action; ?>"/>

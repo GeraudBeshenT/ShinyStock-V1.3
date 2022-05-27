@@ -3,6 +3,7 @@
 include '../bdd.class.inc.php';
 include '../all.class.inc.php';
 
+
 $draw = $_POST['draw'];
 $row = $_POST['start'];
 $rowperpage = $_POST['length'];
@@ -58,7 +59,7 @@ foreach ($empRecords as $row) {
             "idclient" => $row['idclient'],
             "nomclient" => $row['nomclient'],
             "actions" => "<div class='btn-group'>"
-            . "<form method='POST' action='modifDocumentclient.php'>"
+            . "<form method='POST' action='modifDocumentclient.php?iddocumentclient='" . $row['iddocumentclient'] . "''>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
                 . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
@@ -69,7 +70,24 @@ foreach ($empRecords as $row) {
                 . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
                 . "<input name='action' type='hidden' value='supprimer'/>"
-            . "</form></div>",
+            . "</form>"
+            . "</div>",
+            "detail" => "<div class='btn-group'>"
+            . "<form method='POST' action='detailclient.vue.php'>"
+                . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-eye'></i></button>"
+                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
+                . "<input name='type' type='hidden' value='Document'/>"
+                . "<input name='action' type='hidden' value='modifier'/>"
+            . "</form>"
+            . "</div>",
+            "export" => "<div class='btn-group'>"
+            . "<form method='POST' action='./FPDF/pdfarticles.php' target='_blank'>"
+                . "<button type='submit' class='btn btn-warning rounded-pill'>PDF</button>"
+                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
+                . "<input name='type' type='hidden' value='Document'/>"
+                . "<input name='action' type='hidden' value='modifier'/>"
+            . "</form>"
+            . "</div>",
         );
     }
 }

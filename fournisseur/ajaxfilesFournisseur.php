@@ -34,7 +34,7 @@ $ob = new Fournisseur();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM fournisseur INNER JOIN commune ON commune.idcommune = fournisseur.idcommune INNER JOIN tarif ON tarif.idtarif = fournisseur.idtarif INNER JOIN societe ON societe.idsociete = fournisseur.idsociete INNER JOIN paiement ON paiement.idpaiement = fournisseur.idpaiement WHERE supfournisseur = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM fournisseur INNER JOIN commune ON commune.idcommune = fournisseur.idcommune INNER JOIN societe ON societe.idsociete = fournisseur.idsociete INNER JOIN paiement ON paiement.idpaiement = fournisseur.idpaiement WHERE supfournisseur = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
@@ -57,6 +57,8 @@ foreach ($empRecords as $row) {
             "telephonefournisseur" => $row['telephonefournisseur'],
             "emailfournisseur" => $row['emailfournisseur'],
             "libcommune" => $row['libcommune'],
+            "codefournisseur" => $row['codefournisseur'],
+            "libpaiement" => $row['libpaiement'],
             "actions" => "<div class='btn-group'>"
             // bouton détail
             . "<form method='POST' action='fournisseur.php'>"

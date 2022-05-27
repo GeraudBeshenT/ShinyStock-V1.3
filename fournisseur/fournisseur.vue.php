@@ -32,7 +32,7 @@
                         'url': 'ajaxfilesFournisseur.php',
                     },
                     'columns': [
-                        {data: 'idfournisseur'},
+                        // {data: 'idfournisseur'},
                         {data: 'nomfournisseur'},
                         {data: 'adressefournisseur'},
                         {data: 'emailfournisseur'},
@@ -48,13 +48,13 @@
             <table id = 'Fournisseur' class = 'display dataTable text-center '>
                 <thead>
                     <tr>
-                        <th>id fournisseur</th>
+                        <!-- <th>id fournisseur</th> -->
                         <th>Fournisseur</th>
-                        <th>Adresse</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>commune</th>
-                        <th>ACTIONS</th>
+                        <th>Adresse postale</th>
+                        <th>Adresse email</th>
+                        <th>N° de téléphone</th>
+                        <th>Ville</th>
+                        <th>Actions</th>
                     </tr>    
                 </thead>        
             </table>    

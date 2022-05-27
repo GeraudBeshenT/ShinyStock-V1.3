@@ -69,7 +69,7 @@
 		Public function Setreffour($e){$this->reffour = $e;}
 		Public function Setgenrod($e){$this->genrod = $e;}
 		Public function Setfrais($e){$this->frais = $e;}
-		Public function Setidtarif(int $e){$this->idtarif;}
+		Public function Setidtarif($e){$this->idtarif;}
 		Public function Setqtecdefou($e){$this->qtecdefou = $e;}
 		Public function Setqtestock($e){$this->qtestock = $e;}
 		Public function Setcptac($e){$this->cptac = $e;}
@@ -92,6 +92,7 @@
 			$stmt->bindValue(':idarticle',$this->idarticle, PDO::PARAM_STR);
 			$stmt->execute();
             while ($row = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT)) {
+			$this->idarticle = $row['idarticle'];
 			$this->libarticle = $row['libarticle'];
 			$this->sousfam = $row['sousfam'];
 			$this->reffour = $row['reffour'];
@@ -144,9 +145,9 @@
 		Public function AddBDD($pdo)
 		{
 			$stmt = $pdo->prepare("INSERT INTO article (idarticle, libarticle, sousfam, reffour, genrod, frais, idtarif, qtecdefou, qtestock, cptac, cptvem, cptvec, cptveom, cptvee, cptvecee, commentaire, idcategorie, suparticle) VALUES (NULL, :libarticle, :sousfam, :reffour, :genrod, :frais, :idtarif, :qtecdefou, :qtestock, :cptac, :cptvem, :cptvec, :cptveom, :cptvee, :cptvecee, :commentaire, :idcategorie, 0);");
-			/* var_dump($stmt);
-            var_dump($this);
-            die(); */
+			// var_dump($stmt);
+   //          var_dump($this);
+   //          die(); 
 			$stmt->bindValue(':libarticle',$this->libarticle, PDO::PARAM_STR);
 			$stmt->bindValue(':sousfam',$this->sousfam, PDO::PARAM_STR);
 			$stmt->bindValue(':reffour',$this->reffour, PDO::PARAM_STR);
@@ -164,11 +165,8 @@
 			$stmt->bindValue(':commentaire',$this->commentaire, PDO::PARAM_STR);
 			$stmt->bindValue(':idcategorie',$this->idcategorie, PDO::PARAM_INT);
 			$stmt->execute();
-		}
-		
-		Public function CreateBDD($pdo)
-		{
-			$stmt = $pdo->prepare("");
+            return $stmt;
+            var_dump($stmt);
 		}
 
 		Public function CountBDD($pdo)

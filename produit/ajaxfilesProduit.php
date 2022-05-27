@@ -1,9 +1,5 @@
 <?php
-/***********************************************
-
-Partie Produit confiée à Géraud BESSON
-
-***********************************************/
+// Lien de connection à la base de donnée et les différentes classes créées.
 include '../bdd.class.inc.php';
 include '../all.class.inc.php';
 
@@ -16,29 +12,21 @@ $columnSortOrder = $_POST['order'][0]['dir'];
 $searchValue = $_POST['search']['value'];
 
 $searchArray = array();
-
+// barre de recherche
 $searchQuery = " ";
 if ($searchValue != '') {
-    $searchQuery = " AND (id_article_article LIKE :id_article_article) "
-			. "OR (nom_article LIKE :nom_article)"
-            . "OR (qte_article LIKE :qte_article)"
-            . "OR (Qte_stock LIKE :Qte_stock)"
-			. "OR (b_supcompose LIKE :b_supcompose)";
+    $searchQuery = " AND (qtearticle LIKE :qtearticle)";
     $searchArray = array(
-        'id_article_article' => "%$searchValue%",
-		'nom_article' => "%$searchValue%",
-        'qte_article' => "%$searchValue%",
-        'Qte_stock' => "%$searchValue%",
-		'b_supcompose' => "%$searchValue%"
+        'qtearticle' => "%$searchValue%"
     );
 }
-
+// D'après la classe societe, selection de toutes les données de la table état
 $ob = new Produit();
 
-$totalRecords = $ob->CountProduitBDD($conn);
-$totalRecordwithFilter = $ob->CountProduitParamBDD($conn,$searchQuery,$searchArray);
+$totalRecords = $ob->CountBDD($conn);
+$totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT id_article_article, nom_article, qte_article, Qte_stock, b_supcompose FROM `compose` INNER JOIN article ON compose.id_article_article = article.id_article WHERE b_supcompose = 0 AND id_article_produit = " . $_GET['id_article_produit'] . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM compose INNER JOIN article ON article.idarticle = compose.idarticleCompose WHERE supcompose = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
@@ -50,31 +38,28 @@ $stmt->execute();
 $empRecords = $stmt->fetchAll();
 
 $data = array();
-// Ligne action contentant les boutons modifier supprimer
-// Boucle affichant toutes les lignes donc la valeur b_suparticle est affiché
-// Bouton dont la valeur est = à l'idée de la ligne selectionné & la valeur est MODIFIER
-// Bouton Supprimer qui renvoie au fichier de traitement grâce à l'id de la ligne selectionnée
+// Boucle modifier supprimé qui se répète sur toutes les lignes du tableau.
+// Récupération de l'idcompose, formulaire de modification/suppression qui envoient les données dans les fichiers modicompose/tratiementcompose.
 foreach ($empRecords as $row) {
-    if ($row['b_supcompose'] == 0) {
+    if ($row['supcompose'] == 0) {
         $data[] = array(
-            "id_article_article" => $row['id_article_article'],
-			"nom_article" => $row['nom_article'],
-            "qte_article" => $row['qte_article'],
-            "Qte_stock" => $row['Qte_stock'],
+            "idproduit" => $row['idproduit'],
+            "libarticle" => $row['libarticle'],
+            "qtearticle" => $row['qtearticle'],
             "actions" => "<div class='btn-group'>"
-            ."<form method='POST' action='traitementProduit.php'>"
-                . "<button type='submit' class='btn btn-danger rounded-pill'><i class='fa fa-trash'></i></button>"
-                . "<input name='id' type='hidden' value='" . $row['id_article_article'] . "'/>"
-                . "<input name='type' type='hidden' value='Article'/>"
-                . "<input name='action' type='hidden' value='supprimer'/>"
-            . "</form> &nbsp"
+            // bouton détail
             . "<form method='POST' action='modifProduit.php'>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
-                . "<input name='id' type='hidden' value='" . $row['id_article_article'] . "'/>"
-                . "<input name='type' type='hidden' value='Article'/>"
+                . "<input name='idproduit' type='hidden' value='" . $row['idproduit'] . "'/>"
+                . "<input name='type' type='hidden' value='produit'/>"
                 . "<input name='action' type='hidden' value='modifier'/>"
             . "</form> &nbsp"
-			. "</div>",
+            ."<form method='POST' action='traitementProduit.php'>"
+                . "<button type='submit' class='btn btn-danger rounded-pill'><i class='fa fa-trash'></i></button>"
+                . "<input name='idproduit' type='hidden' value='" . $row['idproduit'] . "'/>"
+                . "<input name='type' type='hidden' value='produit'/>"
+                . "<input name='action' type='hidden' value='supprimer'/>"
+            . "</form></div>",
         );
     }
 }

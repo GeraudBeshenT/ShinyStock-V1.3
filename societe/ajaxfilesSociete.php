@@ -17,6 +17,7 @@ $searchQuery = " ";
 if ($searchValue != '') {
     $searchQuery = " AND (idsociete LIKE :idsociete) "
             . "OR (libsociete LIKE :libsociete)";
+            $searchValue = str_replace(" ","%%",$searchValue);
     $searchArray = array(
         'idsociete' => "%$searchValue%",
         'libsociete' => "%$searchValue%"

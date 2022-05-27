@@ -7,8 +7,8 @@
 	  <link rel="stylesheet" type="text/css" href="../css/GSS/css/styler1-grid.css">
 	  <link rel="stylesheet" type="text/css" href="../css/GSS/css/styler1-text.css">
 	  <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
-		<script type="text/javascript" src="js/jquery.min.js"></script>
-		<script type="text/javascript" src="js/scriptcategorie.js"></script>
+		<script type="text/javascript" src="../js/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/scriptcategorie.js"></script>
 		<script type="text/javascript" src="../js/scripttarif.js"></script>
 </head>
 <body>
@@ -32,73 +32,73 @@
 	<form method='POST' action='traitementArticle.php'>
            	<div class="row">
 				<input name='idtiers' type='hidden' value='<?php echo $ob->Getidarticle(); ?>'/>
-	           	<div class="col-6 text-bold">
-	           		Article: 
+	           	<div class="col-6">
+	           		Nom de l'article: 
 	           		<input name='libarticle' type='text' placeholder="Article" value='<?php echo $ob->Getlibarticle(); ?>' required /><br>
 				</div>
-	           	<div class="col-6 text-bold">
-	           		Sousfam: 
+	           	<div class="col-6">
+	           		Sous famille: 
 	           		<input name='sousfam' type='text' pattern='[0-9]{1,11}' placeholder="Adresse du Siège social" value='<?php echo $ob->Getsousfam(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		reffour: 
+	           	<div class="col-6">
+	           		reference fournisseur: 
 	           		<input name='reffour' type='text' placeholder="reffour" value='<?php echo $ob->Getreffour(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
+	           	<div class="col-6">
 	           		genrod: 
 	           		<input name='genrod' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getgenrod(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
+	           	<div class="col-6">
 	           		frais: 
 	           		<input name='frais' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getfrais(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
+	           	<div class="col-6">
 	           		Tarif:
                     <input type="text" id="nom_idtarif" onkeyup="autocompletT()" placeholder="Format numérique" value='<?php echo $ob->Getlibtarif(); ?>' required/>
                     <input type="hidden" id="nomtarif_idtarif" name="idtarif" value='<?php echo $ob->Getidtarif(); ?>'>
                     <ul id="nom_list_idtarif"></ul>
                 </div>
-	           	<div class="col-6 text-bold">
-	           		qtecdefou: 
+	           	<div class="col-6">
+	           		Quantité commandée: 
 	           		<input name='qtecdefou' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getqtecdefou(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		qtestock: 
+	           	<div class="col-6">
+	           		Quantité enstock: 
 	           		<input name='qtestock' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getqtestock(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		cptac: 
+	           	<div class="col-6">
+	           		compte ac: 
 	           		<input name='cptac' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptac(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		cptvem: 
+	           	<div class="col-6">
+	           		compte vem: 
 	           		<input name='cptvem' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptvem(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		cptvec: 
+	           	<div class="col-6">
+	           		compte vec: 
 	           		<input name='cptvec' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptvec(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
+	           	<div class="col-6">
 	           		cptveom: 
 	           		<input name='cptveom' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptveom(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		cptvee: 
+	           	<div class="col-6">
+	           		compte vee: 
 	           		<input name='cptvee' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptvee(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		cptvecee: 
+	           	<div class="col-6">
+	           		compte vecee: 
 	           		<input name='cptvecee' type='text' pattern='[0-9]{1,11}' placeholder="chiffres" value='<?php echo $ob->Getcptvecee(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
+	           	<div class="col-6">
 	           		commentaire: 
 	           		<input name='commentaire' type='text' placeholder="Adresse du Siège social" value='<?php echo $ob->Getcommentaire(); ?>' required /><br>
 	           	</div>
-	           	<div class="col-6 text-bold">
-	           		categorie:
-                    <input type="text" id="nom_id" onkeyup="autocompletCategorie()" value='<?php echo $ob->Getlibcategorie(); ?>' placeholder="catégorie" required>
-                    <input type="hidden" id="nom2_id" name="idcategorie" value='<?php echo $ob->Getidcategorie(); ?>'>
-                    <ul id="nom_list_id"></ul>
+	           	<div class="col-6">
+	           		catégorie:
+                    <input type="text" id="nom_idcategorie" onkeyup="autocompletCategorie()" value='<?php echo $ob->Getlibcategorie(); ?>' placeholder="catégorie" required>
+                    <input type="hidden" id="nom2_idcategorie" name="idcategorie" value='<?php echo $ob->Getidcategorie(); ?>'>
+                    <ul id="nom_list_idcategorie"></ul>
                 </div>
 				<input name='action' type='hidden' value="<?php echo $action; ?>"/>
 			</div>

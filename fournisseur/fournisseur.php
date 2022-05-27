@@ -26,7 +26,6 @@
                     echo "<p><b>- Fournisseur</b> : ", $ob->Getlibsociete(),"&nbsp", $ob->Getnomfournisseur(),"</p>";
                     echo "<p><b>- Coordonnées</b> : ", $ob->Gettelephonefournisseur(), ",&nbsp", $ob->Getemailfournisseur(),"</p>";
                     echo "<p><b>- Adresse</b> : ", $ob->Getadressefournisseur(), ",&nbsp", $ob->Getlibcommune(),"</p>";
-                    echo "<p><b>- Tarif indiqué</b> : ", $ob->Getlibtarif(),"</p>";
                     echo "<p><b>- Moyen de paiement</b> : ", $ob->Getlibpaiement(),"</p>";
                     echo "<p><b>- Infos légales</b> : ", $ob->Getcodefournisseur(),"</p>";
         ?>
