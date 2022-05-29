@@ -26,7 +26,7 @@ $ob = new Produit();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM compose INNER JOIN article ON article.idarticle = compose.idarticleCompose WHERE supcompose = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM compose INNER JOIN article ON article.idarticle = compose.idarticleCompose WHERE supcompose = 0 AND compose.idarticleInitial = " . $_GET['id'] . "" . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
@@ -47,7 +47,6 @@ foreach ($empRecords as $row) {
             "libarticle" => $row['libarticle'],
             "qtearticle" => $row['qtearticle'],
             "actions" => "<div class='btn-group'>"
-            // bouton détail
             . "<form method='POST' action='modifProduit.php'>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
                 . "<input name='idproduit' type='hidden' value='" . $row['idproduit'] . "'/>"

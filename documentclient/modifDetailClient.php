@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/scriptarticle.js"></script>
-		<script type="text/javascript" src="../js/scriptdocumentC.js"></script>
+		<script type="text/javascript" src="../js/scriptdocumentclient.js"></script>
 </head>
 <body>
 <br><div class="container bg-light">	
@@ -33,12 +33,13 @@
 <form method='POST' action='traitementDetailclient.php'>
   <div class="row">
 	<input name='iddetailclient' type='hidden' value="<?php echo $ob->Getiddetailclient(); ?>"/>
-	  <div class="col-6">
+    <div class="col-6">
 	  Document concerné:
-      <input type="text" id="nom_iddocument" onkeyup="autocompletDocument()" placeholder="document" value='<?php echo $ob->Getdatedocclient(); ?>' required>
-      <input type="hidden" id="nom2_iddocument" name="iddocumentclient" value='<?php echo $ob->Getiddocumentclient(); ?>'>
-      <ul id="nom_list_iddocument"></ul>
-    </div>	  <div class="col-6">
+      <input type="text" id="nom_iddocumentclient" onkeyup="autocompletDocumentclient()" placeholder="article" value='<?php echo $ob->Getdatedocclient(); ?>' required>
+      <input type="hidden" id="nom2_iddocumentclient" name="iddocumentclient" value='<?php echo $ob->Getiddocumentclient(); ?>'>
+      <ul id="nom_list_iddocumentclient"></ul>
+    </div>
+    <div class="col-6">
 	  Article:
       <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->Getlibarticle(); ?>' required>
       <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->Getidarticle(); ?>'>

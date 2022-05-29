@@ -16,4 +16,5 @@
 	include 'Societe/société.class.inc.php';
 	include 'Tarif/tarif.class.inc.php';
 	include 'payer/payer.class.inc.php';
+	include 'bts/bts.class.inc.php';
 ?>

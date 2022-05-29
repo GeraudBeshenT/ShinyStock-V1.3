@@ -15,8 +15,7 @@
               <form method='POST' action='modifProduit.php'>
                 <input name='action' type='hidden' value="ajouter"/>
                 <button type='submit' class='btn btn-secondary'>Ajouter</button>
-              </form>  &nbsp
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
+              </form>
             </div>
             </div>
           </div>
@@ -24,12 +23,15 @@
         <script type="text/javascript">
             
             $(document).ready(function () {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            var id = urlParams.get('id');
                 $('#Produit').DataTable({
                     'processing': true,
                     'serverSide': true,
                     'serverMethod': 'post',
                     'ajax': {
-                        'url': 'ajaxfilesProduit.php',
+                        'url': 'ajaxfilesProduit.php?id='+id,
                     },
                     'columns': [
                         // {data: 'idproduit'},

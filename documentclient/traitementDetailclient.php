@@ -13,23 +13,23 @@
 		case 'ajouter':
 			$ob = new Detailclient(0,$_POST['iddocumentclient'],$_POST['idarticle'],$_POST['qteachat']);
 			$ob->AddBDD($conn);
-			header("Location: detailclient.vue.php");
+			header("Location: documentclient.vue.php");
 			break;
 
 		case 'supprimer':
 			$ob = new Detailclient($_POST['iddetailclient']);
 			$ob->DelBDD($conn);
-			header("Location: detailclient.vue.php");
+			header("Location: documentclient.vue.php");
 			break;
 
 		case 'modifier':
 			$ob = new Detailclient($_POST['iddetailclient'],$_POST['iddocumentclient'],$_POST['idarticle'],$_POST['qteachat']);
 			$ob->SaveBDD($conn);
-			header("Location: detailclient.vue.php");
+			header("Location: documentclient.vue.php");
 			break;
 
 		default:
-			header("Location: detailclient.vue.php");
+			header("Location: documentclient.vue.php");
 			break;
 	}
 ?>

@@ -33,12 +33,12 @@
 		<div class="row">
 	           	<div class="col-6 text-bold">
 	           		Article:
-                    <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->Getlibarticle(); ?>' required>
-                    <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->Getidarticle(); ?>'>
+                    <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->GetlibarticleCompose(); ?>' required>
+                    <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->GetidarticleCompose(); ?>'>
                     <ul id="nom_list_idarticle"></ul>
                 </div>
 		<div class="col-6">Quantité Article:
-			<input name='qtearticle' placeholder="adresse du fournisseur" type='text' value="<?php echo $ob->Getqtearticle(); ?>"/>
+			<input name='qtearticle' placeholder="adresse du fournisseur" type='text' value="<?php echo $ob->Getqteachat(); ?>"/>
 		</div>
         </div>
 	<!-- Bouton de validation reprennant l'action ajouter ou modifier ! -->

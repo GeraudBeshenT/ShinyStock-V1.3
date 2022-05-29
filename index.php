@@ -109,10 +109,6 @@
                   <span data-feather="file-text"></span>
                     Commande
                 </a>
-               <!--  <a class="nav-link" href="vues/document.vue.php">
-                  <span data-feather="file-text"></span>
-                    Facturation
-                </a> -->
               </li>
             </ul>
             </ul>

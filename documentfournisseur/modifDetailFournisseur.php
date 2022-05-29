@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="../css/Bootstrap/css/bootstrap.css">
 		<script type="text/javascript" src="../js/jquery.min.js"></script>
 		<script type="text/javascript" src="../js/scriptarticle.js"></script>
-		<script type="text/javascript" src="../js/scriptdocument.js"></script>
+		<script type="text/javascript" src="../js/scriptdocumentfournisseur.js"></script>
 </head>
 <body>
 <br><div class="container bg-light">	
@@ -33,12 +33,13 @@
 <form method='POST' action='traitementDetailfournisseur.php'>
   <div class="row">
 	<input name='iddetailfournisseur' type='hidden' value="<?php echo $ob->Getiddetailfournisseur(); ?>"/>
-	  <div class="col-6">
+    <div class="col-6">
 	  Document concerné:
-      <input type="text" id="nom_iddocument" onkeyup="autocompletDocument()" placeholder="document" value='<?php echo $ob->Getdatedocfournisseur(); ?>' required>
-      <input type="hidden" id="nom2_iddocument" name="iddocumentfournisseur" value='<?php echo $ob->Getiddocumentfournisseur(); ?>'>
-      <ul id="nom_list_iddocument"></ul>
-    </div>	  <div class="col-6">
+      <input type="text" id="nom_iddocumentfournisseur" onkeyup="autocompletDocumentfournisseur()" placeholder="article" value='<?php echo $ob->Getdatedocfournisseur(); ?>' required>
+      <input type="hidden" id="nom2_iddocumentfournisseur" name="iddocumentfournisseur" value='<?php echo $ob->Getiddocumentfournisseur(); ?>'>
+      <ul id="nom_list_iddocumentfournisseur"></ul>
+    </div>
+    <div class="col-6">
 	  Article:
       <input type="text" id="nom_idarticle" onkeyup="autocompletArticle()" placeholder="article" value='<?php echo $ob->Getlibarticle(); ?>' required>
       <input type="hidden" id="nom2_idarticle" name="idarticle" value='<?php echo $ob->Getidarticle(); ?>'>

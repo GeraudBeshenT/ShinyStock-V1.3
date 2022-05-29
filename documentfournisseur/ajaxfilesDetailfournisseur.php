@@ -28,7 +28,7 @@ $ob = new Detailfournisseur();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM detailfournisseur INNER JOIN documentfournisseur ON documentfournisseur.iddocumentfournisseur = detailfournisseur.iddocumentfournisseur INNER JOIN article ON article.idarticle = detailfournisseur.idarticle WHERE supdetailfournisseur = 0 AND detailfournisseur.iddocumentfournisseur = " . $_GET['id'] . " " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM detailfournisseur INNER JOIN documentfournisseur ON documentfournisseur.iddocumentfournisseur = detailfournisseur.iddocumentfournisseur INNER JOIN article ON article.idarticle = detailfournisseur.idarticle WHERE supdetailfournisseur = 0 AND detailfournisseur.iddocumentfournisseur = " . $_GET['iddocumentfournisseur'] . " " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);

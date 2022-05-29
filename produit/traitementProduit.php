@@ -11,7 +11,7 @@
 	switch ($_POST['action']) 
 	{
 		case 'ajouter':
-			$ob = new Produit($_POST['idproduit'],$_POST['libproduit'],$_POST['idarticleInitial'],$_POST['idarticleCompose'],$_POST['qtearticle']);
+			$ob = new Produit($_POST['idproduit'],$_POST['idarticleInitial'],$_POST['idarticleCompose'],$_POST['qtearticle']);
 			$ob->AddBDD($conn);
 			header("Location: produit.vue.php");
 			break;
@@ -23,7 +23,7 @@
 			break;
 
 		case 'modifier':
-			$ob = new Produit($_POST['idproduit'],$_POST['libproduit'],$_POST['idarticleInitial'],$_POST['idarticleCompose'],$_POST['qtearticle']);
+			$ob = new Produit($_POST['idproduit'],$_POST['idarticleInitial'],$_POST['idarticleCompose'],$_POST['qtearticle']);
 			$ob->SaveBDD($conn);
 			header("Location: produit.vue.php");
 			break;

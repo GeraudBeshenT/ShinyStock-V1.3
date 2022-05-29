@@ -18,8 +18,7 @@
 			  <form method='POST' action='modifArticle.php'>
                 <input name='action' type='hidden' value='ajouter'/>
                 <button type='submit' class='btn btn-secondary'>Ajouter</button>
-			  </form> &nbsp
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
+			  </form>
             </div>
             </div>
           </div>
@@ -40,8 +39,8 @@
                         {data: 'qtecdefou'},
 						// {data: 'description'},
                         {data: 'libcategorie'},
-                        {data: 'actions'},
-						{data: 'produit'},
+                        {data: 'produit'},
+                        {data: 'actions'}
                     ],
                 });
             });
@@ -57,8 +56,8 @@
                         <th>Quantité commandé au fournisseur</th>
                         <!-- <th>Commentaire</th> -->
 						<th>Description</th>
-                        <th>ACTIONS</th>
                         <th>Création de produit</th>
+                        <th>ACTIONS</th>
                     </tr>
                 </thead>
             </table>

@@ -14,9 +14,12 @@
               <div class="btn-toolbar mb-2 mb-md-0">
               <form method='POST' action='modifDocumentfournisseur.php'>
                 <input name='action' type='hidden' value="ajouter"/>
-                <button type='submit' class='btn btn-secondary'>Ajouter</button>
-              </form>  &nbsp
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
+                <button type='submit' class='btn btn-secondary'>Ajouter un bon de commande</button>
+              </form> &nbsp &nbsp
+              <form method='POST' action='modifDetailfournisseur.php'>
+                <input name='action' type='hidden' value="ajouter"/>
+                <button type='submit' class='btn btn-secondary'>Ajouter un article dans un bon de commande</button>
+              </form>
             </div>
             </div>
           </div>

@@ -12,11 +12,6 @@
             <h1 class="h2">Bons de commande Fournisseurs</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-toolbar mb-2 mb-md-0">
-              <form method='POST' action='modifDetailfournisseur.php'>
-                <input name='action' type='hidden' value="ajouter"/>
-                <button type='submit' class='btn btn-secondary'>Ajouter</button>
-              </form>  &nbsp
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             </div>
           </div>
@@ -24,13 +19,13 @@
             $(document).ready(function () {
             const queryString = window.location.search;
             const urlParams = new URLSearchParams(queryString);
-            var id = urlParams.get('id');
+            var iddocumentfournisseur = urlParams.get('iddocumentfournisseur');
                 $('#detail').DataTable({
                     'processing': true,
                     'serverSide': true,
                     'serverMethod': 'post',
                     'ajax': {
-                        'url': 'ajaxfilesDetailfournisseur.php?id='+id,
+                        'url': 'ajaxfilesDetailfournisseur.php?iddocumentfournisseur='+iddocumentfournisseur,
                     },
                     'columns': [
                         {data: 'iddetailfournisseur'},

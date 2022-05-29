@@ -83,13 +83,12 @@ foreach ($empRecords as $row) {
                 . "<input name='action' type='hidden' value='supprimer'/>"
             . "</form></div>",
             "produit" => "<div class='btn-group'>"
-            // bouton détail
-            . "<form method='POST' action='../produit/produit.vue.php'>"
-                . "<button type='submit' class='btn btn-info rounded-pill'><i class='fa fa-plus'></i></button>"
-                . "<input name='idarticle' type='hidden' value='" . $row['idarticle'] . "'/>"
+            . "<form method='POST' action='../produit/produit.vue.php?id=".$row['idarticle']."'>"
+                . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-eye'></i></button>"
                 . "<input name='type' type='hidden' value='Article'/>"
-                . "<input name='action' type='hidden' value='voir'/>"
-            . "</form></div>",
+                . "<input name='id' type='hidden' value='" . $row['idarticle'] . "'/>"
+                . "<input name='action' type='hidden' value='modifier'/>"
+            . "</form>"
         );
     }
 }

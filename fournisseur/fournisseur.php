@@ -5,7 +5,6 @@
 
         <?php
             include '../header.inc.php';
-            include '../bdd.class.inc.php';
             include '../all.class.inc.php';
             $ob = new Fournisseur();
         ?>

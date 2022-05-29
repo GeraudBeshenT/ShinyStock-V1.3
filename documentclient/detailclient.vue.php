@@ -9,26 +9,23 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-            <h1 class="h2">Bons de commande Clients</h1>
+            <h1 class="h2">Bons de commande clients</h1>
             <div class="btn-toolbar mb-2 mb-md-0">
               <div class="btn-toolbar mb-2 mb-md-0">
-              <form method='POST' action='modifDetailclient.php'>
-                <input name='action' type='hidden' value="ajouter"/>
-                <button type='submit' class='btn btn-secondary'>Ajouter</button>
-              </form>  &nbsp
-              <button class="btn btn-sm btn-outline-secondary">Export</button>
             </div>
             </div>
           </div>
         <script type="text/javascript">
-            
             $(document).ready(function () {
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            var iddocumentclient = urlParams.get('iddocumentclient');
                 $('#detail').DataTable({
                     'processing': true,
                     'serverSide': true,
                     'serverMethod': 'post',
                     'ajax': {
-                        'url': 'ajaxfilesDetailclient.php',
+                        'url': 'ajaxfilesdetailclient.php?iddocumentclient='+iddocumentclient,
                     },
                     'columns': [
                         {data: 'iddetailclient'},

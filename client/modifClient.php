@@ -100,6 +100,10 @@
                     <input type="hidden" id="nom2_idpaiement" name="idpaiement" value='<?php echo $ob->GetidPaiement(); ?>'>
                     <ul id="nom_list_idpaiement"></ul>
                 </div>
+	           	<div class="col-6 text-bold">
+	           		Mot de passe:
+	           		<input name='mdp' type='text' placeholder="Format alphabétique" value='<?php echo $ob->Getmdp(); ?>'/><br>
+	           	</div>
 			<input name='action' type='hidden' value='<?php echo $action; ?>'/>
 		</div>
 		<a class='button bg_dark-radius_5' href="client.vue.php">Retour</a>

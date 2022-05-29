@@ -17,12 +17,10 @@ $searchArray = array();
 $searchQuery = " ";
 if ($searchValue != '') {
     $searchQuery = " AND (iddocumentclient LIKE :iddocumentclient "
-            . "OR datedocclient LIKE :datedocclient "
             . "OR statutclient LIKE :statutclient "
             . "OR commentaireclient LIKE :commentaireclient ";
     $searchArray = array(
         'iddocumentclient' => "%$searchValue%",
-        'datedocclient' => "%$searchValue%",
         'statutclient' => "%$searchValue%",
         'commentaireclient' => "%$searchValue%"
     );
@@ -59,7 +57,7 @@ foreach ($empRecords as $row) {
             "idclient" => $row['idclient'],
             "nomclient" => $row['nomclient'],
             "actions" => "<div class='btn-group'>"
-            . "<form method='POST' action='modifDocumentclient.php?iddocumentclient='" . $row['iddocumentclient'] . "''>"
+            . "<form method='POST' action='modifDocumentclient.php'>"
                 . "<button type='submit' class='btn btn-primary rounded-pill'><i class='fa fa-edit'></i></button>"
                 . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
@@ -73,10 +71,10 @@ foreach ($empRecords as $row) {
             . "</form>"
             . "</div>",
             "detail" => "<div class='btn-group'>"
-            . "<form method='POST' action='detailclient.vue.php'>"
+            . "<form method='POST' action='detailclient.vue.php?iddocumentclient=".$row['iddocumentclient']."'>"
                 . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-eye'></i></button>"
-                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='type' type='hidden' value='Document'/>"
+                . "<input name='iddocumentclient' type='hidden' value='" . $row['iddocumentclient'] . "'/>"
                 . "<input name='action' type='hidden' value='modifier'/>"
             . "</form>"
             . "</div>",

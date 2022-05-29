@@ -28,7 +28,11 @@ $ob = new Detailclient();
 $totalRecords = $ob->CountBDD($conn);
 $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
-$stmt = $conn->prepare("SELECT * FROM detailclient INNER JOIN documentclient ON documentclient.iddocumentclient = detailclient.iddocumentclient INNER JOIN article ON article.idarticle = detailclient.idarticle WHERE supdetailclient = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM detailclient
+    INNER JOIN documentclient ON documentclient.iddocumentclient = detailclient.iddocumentclient
+    INNER JOIN article ON article.idarticle = detailclient.idarticle
+    WHERE supdetailclient = 0
+    AND detailclient.iddocumentclient = " . $_GET['iddocumentclient'] . " " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);

@@ -72,10 +72,10 @@ foreach ($empRecords as $row) {
             . "</form>"
             . "</div>",
             "detail" => "<div class='btn-group'>"
-            . "<form method='POST' action='detailfournisseur.vue.php?id=".$row['iddocumentfournisseur']."'>"
+            . "<form method='POST' action='detailfournisseur.vue.php?iddocumentfournisseur=".$row['iddocumentfournisseur']."'>"
                 . "<button type='submit' class='btn btn-success rounded-pill'><i class='fa fa-eye'></i></button>"
                 . "<input name='type' type='hidden' value='Document'/>"
-                . "<input name='id' type='hidden' value='" . $row['iddocumentfournisseur'] . "'/>"
+                . "<input name='iddocumentfournisseur' type='hidden' value='" . $row['iddocumentfournisseur'] . "'/>"
                 . "<input name='action' type='hidden' value='modifier'/>"
             . "</form>"
             . "</div>",

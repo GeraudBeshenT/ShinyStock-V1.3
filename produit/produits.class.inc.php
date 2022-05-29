@@ -4,22 +4,22 @@
         Private $idproduit;
         Private $idarticleInitial;
         Private $idarticleCompose;
-        Private $libarticle;
+        Private $libarticleCompose;
         Private $qteachat;
 
-        Public function __construct(string $idproduit='', string $idarticleInitial='', string $idarticleCompose='', string $libarticle='', string $qteachat='')
+        Public function __construct(string $idproduit='', string $idarticleInitial='', string $idarticleCompose='', string $libarticleCompose='', string $qteachat='')
         {
             $this->idproduit = $idproduit;
             $this->idarticleInitial = $idarticleInitial;
             $this->idarticleCompose = $idarticleCompose;
-            $this->libarticle = $libarticle;
+            $this->libarticleCompose = $libarticleCompose;
             $this->qteachat = $qteachat;
         }
 
         Public function Getidproduit(){return $this->idproduit;}
         Public function GetidarticleInitial(){return $this->idarticleInitial;}
         Public function GetidarticleCompose(){return $this->idarticleCompose;}
-        Public function Getlibarticle(){return $this->libarticle;}
+        Public function GetlibarticleCompose(){return $this->libarticleCompose;}
         Public function Getqteachat(){return $this->qteachat;}
 
         Public function Setidproduit($e){$this->idproduit=$e;}
@@ -36,7 +36,7 @@
             $this->idproduit = $row['idproduit'];
             $this->idarticleInitial = $row['idarticleInitial'];
             $this->idarticleCompose = $row['idarticleCompose'];
-            $this->libarticle = $row['libarticle'];
+            $this->libarticleCompose = $row['libarticleCompose'];
             $this->qteachat = $row['qteachat'];
         }
 
@@ -49,27 +49,27 @@
 
         Public function SaveBDD($pdo)
         {
-            $stmt = $pdo->prepare('UPDATE compose SET idarticleInitial = :idarticleInitial, idarticleCompose = :idarticleCompose, libarticle = :libarticle, qteachat = :qteachat WHERE idproduit = :idproduit');
+            $stmt = $pdo->prepare('UPDATE compose SET idarticleInitial = :idarticleInitial, idarticleCompose = :idarticleCompose, libarticleCompose = :libarticleCompose, qteachat = :qteachat WHERE idproduit = :idproduit');
             // var_dump($stmt);
    //          var_dump($this);
    //          die();
             $stmt->bindValue(':idproduit',$this->idproduit, PDO::PARAM_STR);
             $stmt->bindValue(':idarticleInitial',$this->idarticleInitial, PDO::PARAM_STR);
             $stmt->bindValue(':idarticleCompose',$this->idarticleCompose, PDO::PARAM_STR);
-            $stmt->bindValue(':libarticle',$this->libarticle, PDO::PARAM_STR);
+            $stmt->bindValue(':libarticleCompose',$this->libarticleCompose, PDO::PARAM_STR);
             $stmt->bindValue(':qteachat',$this->qteachat, PDO::PARAM_STR);
             $stmt->execute();
         }
 
         Public function AddBDD($pdo)
         {
-            $stmt = $pdo->prepare("INSERT INTO compose (idproduit, idarticleInitial, idarticleCompose, libarticle, qteachat, supcompose) VALUES (NULL, :idarticleInitial, :idarticleCompose, :libarticle, :qteachat, 0);");
+            $stmt = $pdo->prepare("INSERT INTO compose (idproduit, idarticleInitial, idarticleCompose, libarticleCompose, qteachat, supcompose) VALUES (NULL, :idarticleInitial, :idarticleCompose, :libarticleCompose, :qteachat, 0);");
             // var_dump($stmt);
    //          var_dump($this);
    //          die(); 
             $stmt->bindValue(':idarticleInitial',$this->idarticleInitial, PDO::PARAM_STR);
             $stmt->bindValue(':idarticleCompose',$this->idarticleCompose, PDO::PARAM_STR);
-            $stmt->bindValue(':libarticle',$this->libarticle, PDO::PARAM_STR);
+            $stmt->bindValue(':libarticleCompose',$this->libarticleCompose, PDO::PARAM_STR);
             $stmt->bindValue(':qteachat',$this->qteachat, PDO::PARAM_STR);
             $stmt->execute();
         }
