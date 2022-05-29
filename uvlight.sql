@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 04 mai 2022 à 19:21
+-- Généré le : dim. 29 mai 2022 à 15:08
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `reffour` varchar(50) DEFAULT NULL,
   `genrod` int(11) DEFAULT NULL,
   `frais` float(6,2) DEFAULT NULL,
+  `idtarif` int(11) NOT NULL,
   `qtecdefou` int(11) DEFAULT NULL,
   `qtestock` int(11) DEFAULT NULL,
   `cptac` float(6,2) DEFAULT NULL,
@@ -47,63 +48,67 @@ CREATE TABLE IF NOT EXISTS `article` (
   `idcategorie` int(11) NOT NULL,
   `suparticle` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idarticle`),
-  KEY `idcategorie` (`idcategorie`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8mb4;
+  KEY `idcategorie` (`idcategorie`),
+  KEY `idtarif` (`idtarif`)
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`idarticle`, `libarticle`, `sousfam`, `reffour`, `genrod`, `frais`, `qtecdefou`, `qtestock`, `cptac`, `cptvem`, `cptvec`, `cptveom`, `cptvee`, `cptvecee`, `commentaire`, `idcategorie`, `suparticle`) VALUES
-(1, 'Article n°0', 4, '5', 4, 5.00, 34, 24, 20.00, 41, 49, 21, 45, 38, 'commentaire n°0', 15, 0),
-(2, 'Article n°1', NULL, NULL, NULL, NULL, 29, 22, 35.00, 18, 27, 26, 29, 15, 'commentaire n°1', 23, 0),
-(3, 'Article n°2', NULL, NULL, NULL, NULL, 13, 10, 38.00, 40, 38, 40, 15, 35, 'commentaire n°2', 18, 0),
-(4, 'Article n°3', NULL, NULL, NULL, NULL, 14, 22, 50.00, 38, 29, 30, 32, 15, 'commentaire n°3', 36, 1),
-(5, 'Article n°4', NULL, NULL, NULL, NULL, 26, 27, 47.00, 37, 37, 46, 48, 32, 'commentaire n°4', 35, 0),
-(6, 'Article n°5', NULL, NULL, NULL, NULL, 25, 20, 45.00, 27, 22, 34, 21, 37, 'commentaire n°5', 1, 0),
-(7, 'Article n°6', NULL, NULL, NULL, NULL, 50, 13, 13.00, 39, 16, 48, 39, 22, 'commentaire n°6', 25, 1),
-(8, 'Article n°7', NULL, NULL, NULL, NULL, 21, 36, 28.00, 33, 19, 31, 50, 45, 'commentaire n°7', 2, 0),
-(9, 'Article n°8', NULL, NULL, NULL, NULL, 25, 19, 31.00, 38, 22, 11, 40, 21, 'commentaire n°8', 30, 1),
-(10, 'Article n°9', NULL, NULL, NULL, NULL, 15, 33, 49.00, 26, 17, 13, 32, 15, 'commentaire n°9', 18, 0),
-(11, 'Article n°10', NULL, NULL, NULL, NULL, 18, 25, 36.00, 13, 35, 11, 20, 29, 'commentaire n°10', 9, 0),
-(12, 'Article n°11', NULL, NULL, NULL, NULL, 37, 40, 16.00, 24, 12, 38, 35, 14, 'commentaire n°11', 3, 1),
-(13, 'Article n°12', NULL, NULL, NULL, NULL, 32, 13, 39.00, 37, 29, 17, 42, 28, 'commentaire n°12', 36, 1),
-(14, 'Article n°13', NULL, NULL, NULL, NULL, 12, 44, 15.00, 12, 50, 31, 22, 50, 'commentaire n°13', 29, 0),
-(15, 'Article n°14', NULL, NULL, NULL, NULL, 26, 25, 49.00, 16, 29, 25, 45, 34, 'commentaire n°14', 18, 1),
-(16, 'Article n°15', NULL, NULL, NULL, NULL, 35, 20, 38.00, 48, 24, 13, 19, 36, 'commentaire n°15', 36, 1),
-(17, 'Article n°16', NULL, NULL, NULL, NULL, 33, 42, 38.00, 31, 18, 47, 45, 16, 'commentaire n°16', 4, 0),
-(18, 'Article n°17', NULL, NULL, NULL, NULL, 19, 14, 42.00, 36, 13, 37, 12, 29, 'commentaire n°17', 10, 0),
-(19, 'Article n°18', NULL, NULL, NULL, NULL, 20, 29, 48.00, 35, 40, 49, 11, 37, 'commentaire n°18', 20, 1),
-(20, 'Article n°19', NULL, NULL, NULL, NULL, 43, 26, 27.00, 50, 39, 13, 43, 26, 'commentaire n°19', 4, 0),
-(21, 'Article n°20', NULL, NULL, NULL, NULL, 24, 28, 20.00, 46, 33, 21, 45, 10, 'commentaire n°20', 36, 0),
-(23, 'Article n°22', NULL, NULL, NULL, NULL, 17, 10, 17.00, 19, 46, 44, 31, 33, 'commentaire n°22', 17, 0),
-(24, 'Article n°23', NULL, NULL, NULL, NULL, 27, 36, 36.00, 16, 28, 24, 49, 50, 'commentaire n°23', 33, 1),
-(25, 'Article n°24', NULL, NULL, NULL, NULL, 21, 19, 32.00, 12, 45, 27, 25, 10, 'commentaire n°24', 34, 0),
-(26, 'Article n°25', NULL, NULL, NULL, NULL, 32, 46, 47.00, 25, 40, 16, 40, 45, 'commentaire n°25', 12, 0),
-(27, 'Article n°26', NULL, NULL, NULL, NULL, 39, 27, 48.00, 28, 35, 10, 48, 30, 'commentaire n°26', 30, 0),
-(28, 'Article n°27', NULL, NULL, NULL, NULL, 30, 43, 30.00, 37, 38, 26, 21, 29, 'commentaire n°27', 14, 0),
-(29, 'Article n°28', NULL, NULL, NULL, NULL, 36, 35, 45.00, 37, 32, 21, 12, 11, 'commentaire n°28', 13, 0),
-(30, 'Article n°29', NULL, NULL, NULL, NULL, 44, 32, 17.00, 35, 12, 44, 30, 21, 'commentaire n°29', 21, 1),
-(31, 'Article n°30', NULL, NULL, NULL, NULL, 15, 20, 11.00, 11, 42, 40, 20, 13, 'commentaire n°30', 29, 1),
-(32, 'Article n°31', NULL, NULL, NULL, NULL, 35, 32, 42.00, 38, 44, 35, 38, 35, 'commentaire n°31', 35, 1),
-(33, 'Article n°32', NULL, NULL, NULL, NULL, 46, 38, 29.00, 35, 35, 26, 29, 32, 'commentaire n°32', 19, 0),
-(34, 'Article n°33', NULL, NULL, NULL, NULL, 48, 18, 36.00, 50, 21, 33, 16, 27, 'commentaire n°33', 6, 0),
-(35, 'Article n°34', NULL, NULL, NULL, NULL, 40, 43, 14.00, 50, 26, 39, 47, 41, 'commentaire n°34', 15, 1),
-(36, 'Article n°35', NULL, NULL, NULL, NULL, 17, 35, 24.00, 26, 36, 11, 37, 11, 'commentaire n°35', 33, 0),
-(37, 'Article n°36', NULL, NULL, NULL, NULL, 31, 21, 37.00, 10, 25, 19, 29, 22, 'commentaire n°36', 11, 0),
-(38, 'Article n°37', NULL, NULL, NULL, NULL, 29, 12, 46.00, 32, 43, 46, 23, 33, 'commentaire n°37', 9, 1),
-(39, 'Article n°38', NULL, NULL, NULL, NULL, 20, 41, 27.00, 18, 37, 27, 33, 46, 'commentaire n°38', 6, 0),
-(40, 'Article n°39', NULL, NULL, NULL, NULL, 32, 45, 20.00, 19, 48, 26, 32, 12, 'commentaire n°39', 35, 1),
-(41, 'Article n°40', NULL, NULL, NULL, NULL, 18, 20, 34.00, 17, 47, 50, 39, 36, 'commentaire n°40', 17, 0),
-(42, 'Article n°41', NULL, NULL, NULL, NULL, 37, 31, 44.00, 26, 44, 21, 49, 20, 'commentaire n°41', 4, 0),
-(43, 'Article n°42', NULL, NULL, NULL, NULL, 29, 17, 31.00, 32, 25, 11, 38, 13, 'commentaire n°42', 30, 1),
-(44, 'Article n°43', NULL, NULL, NULL, NULL, 25, 48, 35.00, 40, 35, 32, 40, 10, 'commentaire n°43', 12, 1),
-(46, 'Article n°45', NULL, NULL, NULL, NULL, 34, 47, 37.00, 23, 35, 28, 48, 32, 'commentaire n°45', 2, 0),
-(47, 'Article n°46', NULL, NULL, NULL, NULL, 48, 22, 50.00, 15, 28, 17, 27, 21, 'commentaire n°46', 11, 1),
-(48, 'Article n°47', NULL, NULL, NULL, NULL, 23, 19, 11.00, 10, 12, 38, 48, 44, 'commentaire n°47', 35, 0),
-(49, 'Article n°48', NULL, NULL, NULL, NULL, 46, 45, 33.00, 42, 41, 11, 41, 46, 'commentaire n°48', 5, 0),
-(50, 'Article n°49', NULL, NULL, NULL, NULL, 32, 15, 14.00, 43, 45, 28, 18, 24, 'commentaire n°49', 20, 0),
-(51, 'Article n°50', NULL, NULL, NULL, NULL, 35, 50, 41.00, 27, 34, 46, 28, 18, 'commentaire n°50', 4, 0);
+INSERT INTO `article` (`idarticle`, `libarticle`, `sousfam`, `reffour`, `genrod`, `frais`, `idtarif`, `qtecdefou`, `qtestock`, `cptac`, `cptvem`, `cptvec`, `cptveom`, `cptvee`, `cptvecee`, `commentaire`, `idcategorie`, `suparticle`) VALUES
+(1, 'Produit 1', 4, '5', 4, 5.00, 1, 34, 24, 20.00, 41, 49, 21, 45, 38, 'commentaire n°0', 15, 0),
+(2, 'Produit 2', NULL, NULL, NULL, NULL, 1, 29, 22, 35.00, 18, 27, 26, 29, 15, 'commentaire n°1', 23, 0),
+(3, 'Article n°2', NULL, NULL, NULL, NULL, 2, 13, 10, 38.00, 40, 38, 40, 15, 35, 'commentaire n°2', 18, 0),
+(4, 'Article n°3', NULL, NULL, NULL, NULL, 2, 14, 22, 50.00, 38, 29, 30, 32, 15, 'commentaire n°3', 36, 1),
+(5, 'Article n°4', NULL, NULL, NULL, NULL, 3, 26, 27, 47.00, 37, 37, 46, 48, 32, 'commentaire n°4', 35, 0),
+(6, 'Article n°5', NULL, NULL, NULL, NULL, 3, 25, 20, 45.00, 27, 22, 34, 21, 37, 'commentaire n°5', 1, 0),
+(7, 'Article n°6', NULL, NULL, NULL, NULL, 4, 50, 13, 13.00, 39, 16, 48, 39, 22, 'commentaire n°6', 25, 1),
+(8, 'Article n°7', NULL, NULL, NULL, NULL, 4, 21, 36, 28.00, 33, 19, 31, 50, 45, 'commentaire n°7', 2, 0),
+(9, 'Article n°8', NULL, NULL, NULL, NULL, 5, 25, 19, 31.00, 38, 22, 11, 40, 21, 'commentaire n°8', 30, 1),
+(10, 'Article n°9', NULL, NULL, NULL, NULL, 5, 15, 33, 49.00, 26, 17, 13, 32, 15, 'commentaire n°9', 18, 0),
+(11, 'Article n°10', NULL, NULL, NULL, NULL, 6, 18, 25, 36.00, 13, 35, 11, 20, 29, 'commentaire n°10', 9, 0),
+(12, 'Article n°11', NULL, NULL, NULL, NULL, 6, 37, 40, 16.00, 24, 12, 38, 35, 14, 'commentaire n°11', 3, 1),
+(13, 'Article n°12', NULL, NULL, NULL, NULL, 7, 32, 13, 39.00, 37, 29, 17, 42, 28, 'commentaire n°12', 36, 1),
+(14, 'Article n°13', NULL, NULL, NULL, NULL, 7, 12, 44, 15.00, 12, 50, 31, 22, 50, 'commentaire n°13', 29, 0),
+(15, 'Article n°14', NULL, NULL, NULL, NULL, 8, 26, 25, 49.00, 16, 29, 25, 45, 34, 'commentaire n°14', 18, 1),
+(16, 'Article n°15', NULL, NULL, NULL, NULL, 8, 35, 20, 38.00, 48, 24, 13, 19, 36, 'commentaire n°15', 36, 1),
+(17, 'Article n°16', NULL, NULL, NULL, NULL, 9, 33, 42, 38.00, 31, 18, 47, 45, 16, 'commentaire n°16', 4, 0),
+(18, 'Article n°17', NULL, NULL, NULL, NULL, 9, 19, 14, 42.00, 36, 13, 37, 12, 29, 'commentaire n°17', 10, 0),
+(19, 'Article n°18', NULL, NULL, NULL, NULL, 10, 20, 29, 48.00, 35, 40, 49, 11, 37, 'commentaire n°18', 20, 1),
+(20, 'Article n°19', NULL, NULL, NULL, NULL, 11, 43, 26, 27.00, 50, 39, 13, 43, 26, 'commentaire n°19', 4, 0),
+(21, 'Article n°20', NULL, NULL, NULL, NULL, 10, 24, 28, 20.00, 46, 33, 21, 45, 10, 'commentaire n°20', 36, 0),
+(23, 'Article n°22', NULL, NULL, NULL, NULL, 11, 17, 10, 17.00, 19, 46, 44, 31, 33, 'commentaire n°22', 17, 0),
+(24, 'Article n°23', NULL, NULL, NULL, NULL, 12, 27, 36, 36.00, 16, 28, 24, 49, 50, 'commentaire n°23', 33, 1),
+(25, 'Article n°24', NULL, NULL, NULL, NULL, 12, 21, 19, 32.00, 12, 45, 27, 25, 10, 'commentaire n°24', 34, 0),
+(26, 'Article n°25', NULL, NULL, NULL, NULL, 14, 32, 46, 47.00, 25, 40, 16, 40, 45, 'commentaire n°25', 12, 0),
+(27, 'Article n°26', NULL, NULL, NULL, NULL, 10, 39, 27, 48.00, 28, 35, 10, 48, 30, 'commentaire n°26', 30, 0),
+(28, 'Article n°27', NULL, NULL, NULL, NULL, 2, 30, 43, 30.00, 37, 38, 26, 21, 29, 'commentaire n°27', 14, 0),
+(29, 'Article n°28', NULL, NULL, NULL, NULL, 4, 36, 35, 45.00, 37, 32, 21, 12, 11, 'commentaire n°28', 13, 0),
+(30, 'Article n°29', NULL, NULL, NULL, NULL, 5, 44, 32, 17.00, 35, 12, 44, 30, 21, 'commentaire n°29', 21, 1),
+(31, 'Article n°30', NULL, NULL, NULL, NULL, 4, 15, 20, 11.00, 11, 42, 40, 20, 13, 'commentaire n°30', 29, 1),
+(32, 'Article n°31', NULL, NULL, NULL, NULL, 6, 35, 32, 42.00, 38, 44, 35, 38, 35, 'commentaire n°31', 35, 1),
+(33, 'Article n°32', NULL, NULL, NULL, NULL, 7, 46, 38, 29.00, 35, 35, 26, 29, 32, 'commentaire n°32', 19, 0),
+(34, 'Article n°33', NULL, NULL, NULL, NULL, 9, 48, 18, 36.00, 50, 21, 33, 16, 27, 'commentaire n°33', 6, 0),
+(35, 'Article n°34', NULL, NULL, NULL, NULL, 4, 40, 43, 14.00, 50, 26, 39, 47, 41, 'commentaire n°34', 15, 1),
+(36, 'Article n°35', NULL, NULL, NULL, NULL, 8, 17, 35, 24.00, 26, 36, 11, 37, 11, 'commentaire n°35', 33, 0),
+(37, 'Article n°36', NULL, NULL, NULL, NULL, 4, 31, 21, 37.00, 10, 25, 19, 29, 22, 'commentaire n°36', 11, 0),
+(38, 'Article n°37', NULL, NULL, NULL, NULL, 5, 29, 12, 46.00, 32, 43, 46, 23, 33, 'commentaire n°37', 9, 1),
+(39, 'Article n°38', NULL, NULL, NULL, NULL, 14, 20, 41, 27.00, 18, 37, 27, 33, 46, 'commentaire n°38', 6, 0),
+(40, 'Article n°39', NULL, NULL, NULL, NULL, 5, 32, 45, 20.00, 19, 48, 26, 32, 12, 'commentaire n°39', 35, 1),
+(41, 'Article n°40', NULL, NULL, NULL, NULL, 8, 18, 20, 34.00, 17, 47, 50, 39, 36, 'commentaire n°40', 17, 0),
+(42, 'Article n°41', NULL, NULL, NULL, NULL, 5, 37, 31, 44.00, 26, 44, 21, 49, 20, 'commentaire n°41', 4, 0),
+(43, 'Article n°42', NULL, NULL, NULL, NULL, 3, 29, 17, 31.00, 32, 25, 11, 38, 13, 'commentaire n°42', 30, 1),
+(44, 'Article n°43', NULL, NULL, NULL, NULL, 7, 25, 48, 35.00, 40, 35, 32, 40, 10, 'commentaire n°43', 12, 1),
+(46, 'Article n°45', NULL, NULL, NULL, NULL, 3, 34, 47, 37.00, 23, 35, 28, 48, 32, 'commentaire n°45', 2, 0),
+(47, 'Article n°46', NULL, NULL, NULL, NULL, 5, 48, 22, 50.00, 15, 28, 17, 27, 21, 'commentaire n°46', 11, 1),
+(48, 'Article n°47', NULL, NULL, NULL, NULL, 4, 23, 19, 11.00, 10, 12, 38, 48, 44, 'commentaire n°47', 35, 0),
+(49, 'Article n°48', NULL, NULL, NULL, NULL, 9, 46, 45, 33.00, 42, 41, 11, 41, 46, 'commentaire n°48', 5, 0),
+(50, 'Article n°49', NULL, NULL, NULL, NULL, 12, 32, 15, 14.00, 43, 45, 28, 18, 24, 'commentaire n°49', 20, 0),
+(51, 'Article n°50', NULL, NULL, NULL, NULL, 12, 35, 50, 41.00, 27, 34, 46, 28, 18, 'commentaire n°50', 4, 0),
+(52, 'a', 4, 'a', 4, 8.00, 8, 4, 4, 4.00, 4, 4, 4, 4, 4, 'a', 3, 1),
+(53, '0', 0, '0', 0, 0.00, 40, 0, 0, 0.00, 0, 0, 0, 0, 0, '0', 4, 1),
+(54, '0', 0, '0', 0, 0.00, 40, 0, 0, 0.00, 0, 0, 0, 0, 0, 'ha', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -267,22 +272,25 @@ CREATE TABLE IF NOT EXISTS `client` (
   `clerib` int(11) NOT NULL,
   `domiciliation` varchar(50) CHARACTER SET utf8mb4 NOT NULL,
   `tel2` varchar(15) CHARACTER SET utf8mb4 NOT NULL,
-  `idtarif` int(11) NOT NULL,
   `idpaiement` int(11) NOT NULL,
   `supclient` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idclient`),
-  UNIQUE KEY `idtarif` (`idtarif`),
-  UNIQUE KEY `idpaiement` (`idpaiement`),
-  UNIQUE KEY `idcommune` (`idcommune`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+  KEY `idpaiement` (`idpaiement`) USING BTREE,
+  KEY `idcommune` (`idcommune`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `client`
 --
 
-INSERT INTO `client` (`idclient`, `nomclient`, `adresseclient`, `telephoneclient`, `emailclient`, `idcommune`, `prefixeclient`, `indicprospect`, `iban`, `bic`, `codebanque`, `codeguichet`, `ncompte`, `clerib`, `domiciliation`, `tel2`, `idtarif`, `idpaiement`, `supclient`) VALUES
-(1, 'client 1', 'adresse 1', 'telephone 1', 'email 1', 1542, 'BJRR', '14', '0', 'ABCDEFGH', 12345, 1234, 132456789, 12, 'domiciliation 1', 'tel2', 13, 1, 0),
-(2, 'a', 'a', 'a', 'a', 8, 'a', '0', '4', '4', 4, 4, 4, 4, '4', '4', 3, 2, 0);
+INSERT INTO `client` (`idclient`, `nomclient`, `adresseclient`, `telephoneclient`, `emailclient`, `idcommune`, `prefixeclient`, `indicprospect`, `iban`, `bic`, `codebanque`, `codeguichet`, `ncompte`, `clerib`, `domiciliation`, `tel2`, `idpaiement`, `supclient`) VALUES
+(1, 'client alpha', 'adresse 1', '0743543540', 'email 1', 1542, 'BJRR', '14', '0', 'ABCDEFGH', 12345, 1234, 132456789, 12, 'domiciliation 1', 'tel2', 1, 0),
+(2, 'client Beta', 'lieu dit trois petits points', '+3345214521', 'mail', 8, 'HGU4', '15', 'FR123456789123456789', 'AZERTYUI', 12345, 4321, 12346789, 44, 'domici', '0504060405', 2, 0),
+(3, 'client gamma', 'avenue grand cru', '0350450', 'email@email.com', 5, 'DFGHJ', '77', 'FR123456789123456554', 'FGHJUYT', 54756, 545, 54, 45, 'eee', 'ded', 4, 0),
+(4, 'client delta', 'rue des gens frais', '0458746054', 'mail@mailmail.com', 3, 'cgjbk', '45', 'FR123756842123456789', 'POIUYTRE', 7, 7, 7, 7, '7', '7', 8, 0),
+(9, '0', '0', '0', '0', 4, '0', '0', '0', '0', 0, 0, 0, 0, '0', '0', 5, 1),
+(10, 'client Epsilon', 'adresse 61787', '+33471685295', 'geraudbesson@gmail.com', 5162, 'CliE', '15', '15', '65', 45, 32, 4535, 45, 'dom', '5', 1, 0),
+(11, 'Client Zêta', 'adresse 584', '+33748596245', 'geraudbeshent@gmail.com', 5068, '54GG', '0', '0', '5545', 54, 125, 548, 333, 'dom', '', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -34080,73 +34088,83 @@ INSERT INTO `commune` (`idcommune`, `libcommune`, `supcommune`, `cpcommune`) VAL
 DROP TABLE IF EXISTS `compose`;
 CREATE TABLE IF NOT EXISTS `compose` (
   `idproduit` int(11) NOT NULL AUTO_INCREMENT,
-  `idarticlearticle` int(11) NOT NULL,
+  `idarticleInitial` int(11) NOT NULL,
+  `idarticleCompose` int(11) NOT NULL,
   `qtearticle` varchar(50) DEFAULT NULL,
   `supcompose` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idproduit`,`idarticlearticle`),
-  KEY `idarticlearticle` (`idarticlearticle`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`idproduit`) USING BTREE,
+  KEY `idarticleCompose` (`idarticleCompose`),
+  KEY `idarticleInitial` (`idarticleInitial`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `compose`
 --
 
-INSERT INTO `compose` (`idproduit`, `idarticlearticle`, `qtearticle`, `supcompose`) VALUES
-(1, 12, '1', 1),
-(2, 5, '4', 0),
-(2, 41, '2', 1),
-(3, 11, '1', 1),
-(4, 17, '2', 1),
-(5, 35, '1', 1),
-(6, 50, '2', 1),
-(7, 46, '3', 1),
-(8, 34, '4', 1);
+INSERT INTO `compose` (`idproduit`, `idarticleInitial`, `idarticleCompose`, `qtearticle`, `supcompose`) VALUES
+(1, 1, 51, '2', 0),
+(2, 1, 50, '2', 0),
+(3, 2, 11, '4', 0),
+(4, 2, 12, '1', 0),
+(5, 2, 14, '5', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `detail`
+-- Structure de la table `detailclient`
 --
 
-DROP TABLE IF EXISTS `detail`;
-CREATE TABLE IF NOT EXISTS `detail` (
-  `iddetail` int(11) NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `detailclient`;
+CREATE TABLE IF NOT EXISTS `detailclient` (
+  `iddetailclient` int(11) NOT NULL AUTO_INCREMENT,
   `idarticle` int(11) NOT NULL,
-  `iddocument` int(11) NOT NULL,
+  `iddocumentclient` int(11) NOT NULL,
   `qteachat` varchar(50) DEFAULT NULL,
-  `supdetail` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`iddetail`),
+  `supdetailclient` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`iddetailclient`),
   KEY `idarticlee` (`idarticle`),
-  KEY `iddocuments` (`iddocument`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  KEY `iddocumentclient` (`iddocumentclient`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `detailclient`
+--
+
+INSERT INTO `detailclient` (`iddetailclient`, `idarticle`, `iddocumentclient`, `qteachat`, `supdetailclient`) VALUES
+(1, 3, 1, '4', 0),
+(2, 1, 1, '5', 0),
+(3, 13, 1, '2', 0);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `document`
+-- Structure de la table `detailfournisseur`
 --
 
-DROP TABLE IF EXISTS `document`;
-CREATE TABLE IF NOT EXISTS `document` (
-  `iddocument` int(11) NOT NULL AUTO_INCREMENT,
-  `datedoc` varchar(50) DEFAULT NULL,
-  `commentaire` varchar(250) DEFAULT NULL,
-  `statut` varchar(50) DEFAULT NULL,
-  `idetat` int(11) NOT NULL,
-  `idfournisseur` int(11) DEFAULT NULL,
-  `supdocument` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`iddocument`),
-  UNIQUE KEY `idfournisseur` (`idfournisseur`),
-  KEY `idetat` (`idetat`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `detailfournisseur`;
+CREATE TABLE IF NOT EXISTS `detailfournisseur` (
+  `iddetailfournisseur` int(11) NOT NULL AUTO_INCREMENT,
+  `iddocumentfournisseur` int(11) NOT NULL,
+  `idarticle` int(11) NOT NULL,
+  `qteachat` varchar(20) NOT NULL,
+  `supdetailfournisseur` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`iddetailfournisseur`),
+  KEY `iddocumentfournisseur` (`iddocumentfournisseur`) USING BTREE,
+  KEY `idarticle` (`idarticle`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 --
--- Déchargement des données de la table `document`
+-- Déchargement des données de la table `detailfournisseur`
 --
 
-INSERT INTO `document` (`iddocument`, `datedoc`, `commentaire`, `statut`, `idetat`, `idfournisseur`, `supdocument`) VALUES
-(1, 'f', 'f', 'f', 2, 3, 1),
-(2, 'd', 'd', 'd', 3, NULL, 0);
+INSERT INTO `detailfournisseur` (`iddetailfournisseur`, `iddocumentfournisseur`, `idarticle`, `qteachat`, `supdetailfournisseur`) VALUES
+(1, 5, 2, '5', 0),
+(3, 1, 54, '4', 1),
+(4, 5, 16, '1', 0),
+(5, 5, 18, '1', 0),
+(6, 9, 43, '5', 0),
+(7, 1, 7, '6', 0),
+(8, 6, 1, '1', 0);
 
 -- --------------------------------------------------------
 
@@ -34164,8 +34182,8 @@ CREATE TABLE IF NOT EXISTS `documentclient` (
   `idclient` int(11) NOT NULL,
   `supdocumentclient` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`iddocumentclient`),
-  UNIQUE KEY `idetat` (`idetat`),
-  UNIQUE KEY `idclient` (`idclient`)
+  KEY `idetat` (`idetat`) USING BTREE,
+  KEY `idclient` (`idclient`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
@@ -34173,7 +34191,39 @@ CREATE TABLE IF NOT EXISTS `documentclient` (
 --
 
 INSERT INTO `documentclient` (`iddocumentclient`, `datedocclient`, `commentaireclient`, `statutclient`, `idetat`, `idclient`, `supdocumentclient`) VALUES
-(1, '30533', '534', '345', 3, 2, 0);
+(1, '20/09/2022', 'Commentaire pour le bon de commande 54145', 'statut', 3, 3, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `documentfournisseur`
+--
+
+DROP TABLE IF EXISTS `documentfournisseur`;
+CREATE TABLE IF NOT EXISTS `documentfournisseur` (
+  `iddocumentfournisseur` int(11) NOT NULL AUTO_INCREMENT,
+  `datedocfournisseur` varchar(50) DEFAULT NULL,
+  `commentairefournisseur` varchar(250) DEFAULT NULL,
+  `statutfournisseur` varchar(50) DEFAULT NULL,
+  `idetat` int(11) NOT NULL,
+  `idfournisseur` int(11) NOT NULL,
+  `supdocumentfournisseur` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`iddocumentfournisseur`),
+  KEY `idfournisseur` (`idfournisseur`) USING BTREE,
+  KEY `idetat` (`idetat`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Déchargement des données de la table `documentfournisseur`
+--
+
+INSERT INTO `documentfournisseur` (`iddocumentfournisseur`, `datedocfournisseur`, `commentairefournisseur`, `statutfournisseur`, `idetat`, `idfournisseur`, `supdocumentfournisseur`) VALUES
+(1, '17/05/2022', 'commentaire à propos de la commande fournisseur', 'statut', 1, 3, 0),
+(5, '17/09/2022', 'commentaire', 'statut', 3, 1, 0),
+(6, '17', '17', '17', 2, 4, 0),
+(8, '14/06/2023', 'bon de commande au profit d\'une ONG', 'legal', 2, 4, 0),
+(9, '111', '11', '11', 3, 4, 1),
+(10, '25/06/2022', 'commande importante', 'Quelconque', 3, 3, 0);
 
 -- --------------------------------------------------------
 
@@ -34214,25 +34264,27 @@ CREATE TABLE IF NOT EXISTS `fournisseur` (
   `emailfournisseur` varchar(50) NOT NULL,
   `idcommune` int(11) NOT NULL,
   `prefixefournisseur` varchar(25) NOT NULL,
-  `idtarif` int(11) NOT NULL,
   `idsociete` int(11) NOT NULL,
   `idpaiement` int(11) NOT NULL,
   `codefournisseur` int(11) NOT NULL,
   `supfournisseur` int(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`idfournisseur`),
-  UNIQUE KEY `idtarif` (`idtarif`),
-  UNIQUE KEY `idsociete` (`idsociete`),
-  UNIQUE KEY `idpaiement` (`idpaiement`),
-  UNIQUE KEY `idcommune` (`idcommune`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+  KEY `idsociete` (`idsociete`) USING BTREE,
+  KEY `idpaiement` (`idpaiement`) USING BTREE,
+  KEY `idcommune` (`idcommune`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 --
 -- Déchargement des données de la table `fournisseur`
 --
 
-INSERT INTO `fournisseur` (`idfournisseur`, `nomfournisseur`, `adressefournisseur`, `telephonefournisseur`, `emailfournisseur`, `idcommune`, `prefixefournisseur`, `idtarif`, `idsociete`, `idpaiement`, `codefournisseur`, `supfournisseur`) VALUES
-(1, 'nom', 'adresse', 'telephone', 'email', 12345, 'prefixe', 16, 7, 10, 154, 0),
-(3, 'fournisseur', 'adresse', 'tel', 'mail', 7, 'a', 3, 5, 6, 54, 0);
+INSERT INTO `fournisseur` (`idfournisseur`, `nomfournisseur`, `adressefournisseur`, `telephonefournisseur`, `emailfournisseur`, `idcommune`, `prefixefournisseur`, `idsociete`, `idpaiement`, `codefournisseur`, `supfournisseur`) VALUES
+(1, 'nom3', '3', '3', '3', 12345, 'prefixe', 7, 9, 154, 0),
+(3, 'fournisseur Béta', 'adresse', 'tel', 'mail', 7, 'a', 5, 6, 54, 0),
+(4, 'fournisseur Alpha', 'rue des impasses', '+33757086654', 'contact@alpha.fr', 3, 'FALP1', 6, 7, 54, 0),
+(5, 'c', 'c', 'c', 'c', 5, 'a', 3, 11, 4, 0),
+(6, 'a', 'a', 'a', 'a', 10, 'a', 9, 13, 5, 1),
+(13, 'h', 'a', '+33757086654', '0', 18, 'DFGHJ', 4, 7, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -34399,31 +34451,6 @@ INSERT INTO `tarif` (`idtarif`, `libtarif`, `suptarif`) VALUES
 (1004, 'f', 0),
 (1005, '', 0);
 
--- --------------------------------------------------------
-
---
--- Structure de la table `typemodif`
---
-
-DROP TABLE IF EXISTS `typemodif`;
-CREATE TABLE IF NOT EXISTS `typemodif` (
-  `idmodif` int(11) NOT NULL AUTO_INCREMENT,
-  `libmodif` varchar(50) NOT NULL,
-  `supmodif` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`idmodif`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
-
---
--- Déchargement des données de la table `typemodif`
---
-
-INSERT INTO `typemodif` (`idmodif`, `libmodif`, `supmodif`) VALUES
-(1, 'Bruh', 1),
-(3, 'Modifiernn', 0),
-(4, 'Supprimer', 1),
-(5, 'delete', 0),
-(6, 'testkhlkhlkj', 1);
-
 --
 -- Contraintes pour les tables déchargées
 --
@@ -34432,6 +34459,7 @@ INSERT INTO `typemodif` (`idmodif`, `libmodif`, `supmodif`) VALUES
 -- Contraintes pour la table `article`
 --
 ALTER TABLE `article`
+  ADD CONSTRAINT `fk_tarif` FOREIGN KEY (`idtarif`) REFERENCES `tarif` (`idtarif`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `idcategorie` FOREIGN KEY (`idcategorie`) REFERENCES `categorie` (`idcategorie`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
@@ -34445,28 +34473,28 @@ ALTER TABLE `casier`
 --
 ALTER TABLE `client`
   ADD CONSTRAINT `fk_commune` FOREIGN KEY (`idcommune`) REFERENCES `commune` (`idcommune`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_paiement` FOREIGN KEY (`idpaiement`) REFERENCES `paiement` (`idpaiement`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tarif` FOREIGN KEY (`idtarif`) REFERENCES `tarif` (`idtarif`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_paiement` FOREIGN KEY (`idpaiement`) REFERENCES `paiement` (`idpaiement`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `compose`
 --
 ALTER TABLE `compose`
-  ADD CONSTRAINT `idarticle` FOREIGN KEY (`idarticlearticle`) REFERENCES `article` (`idarticle`);
+  ADD CONSTRAINT `fk_idartCo` FOREIGN KEY (`idarticleCompose`) REFERENCES `article` (`idarticle`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_idartIn` FOREIGN KEY (`idarticleInitial`) REFERENCES `article` (`idarticle`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `detail`
+-- Contraintes pour la table `detailclient`
 --
-ALTER TABLE `detail`
-  ADD CONSTRAINT `idarticlee` FOREIGN KEY (`idarticle`) REFERENCES `article` (`idarticle`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `iddocuments` FOREIGN KEY (`iddocument`) REFERENCES `document` (`iddocument`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `detailclient`
+  ADD CONSTRAINT `fk_articledetail` FOREIGN KEY (`idarticle`) REFERENCES `article` (`idarticle`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_iddoccli` FOREIGN KEY (`iddocumentclient`) REFERENCES `documentclient` (`iddocumentclient`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Contraintes pour la table `document`
+-- Contraintes pour la table `detailfournisseur`
 --
-ALTER TABLE `document`
-  ADD CONSTRAINT `fk_etat` FOREIGN KEY (`idetat`) REFERENCES `etat` (`idetat`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_fou` FOREIGN KEY (`idfournisseur`) REFERENCES `fournisseur` (`idfournisseur`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `detailfournisseur`
+  ADD CONSTRAINT `fk_articledefo` FOREIGN KEY (`idarticle`) REFERENCES `article` (`idarticle`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_docfou` FOREIGN KEY (`iddocumentfournisseur`) REFERENCES `documentfournisseur` (`iddocumentfournisseur`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `documentclient`
@@ -34476,13 +34504,19 @@ ALTER TABLE `documentclient`
   ADD CONSTRAINT `fk_etat2` FOREIGN KEY (`idetat`) REFERENCES `etat` (`idetat`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Contraintes pour la table `documentfournisseur`
+--
+ALTER TABLE `documentfournisseur`
+  ADD CONSTRAINT `fk_etat` FOREIGN KEY (`idetat`) REFERENCES `etat` (`idetat`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_fou` FOREIGN KEY (`idfournisseur`) REFERENCES `fournisseur` (`idfournisseur`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Contraintes pour la table `fournisseur`
 --
 ALTER TABLE `fournisseur`
   ADD CONSTRAINT `fk_commune_fou` FOREIGN KEY (`idcommune`) REFERENCES `commune` (`idcommune`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_paiement_fou` FOREIGN KEY (`idpaiement`) REFERENCES `paiement` (`idpaiement`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_societe_fou` FOREIGN KEY (`idsociete`) REFERENCES `societe` (`idsociete`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_tarif_fou` FOREIGN KEY (`idtarif`) REFERENCES `tarif` (`idtarif`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `fk_societe_fou` FOREIGN KEY (`idsociete`) REFERENCES `societe` (`idsociete`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `payer`

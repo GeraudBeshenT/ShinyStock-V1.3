@@ -87,13 +87,13 @@
                   Catégories
                 </a>
               </li>
-			  <li class="nav-item">
+			        <li class="nav-item">
                 <a class="nav-link" href="../societe/societe.vue.php">
                   <span data-feather="file-text"></span>
                   Sociétés
                 </a>
               </li>
-			  <li class="nav-item">
+			         <li class="nav-item">
                 <a class="nav-link" href="../casier/casier.vue.php">
                   <span data-feather="file-text"></span>
                   Casiers
@@ -111,16 +111,13 @@
                   <span data-feather="file-text"></span>
                     Bons de commande fournisseurs
                 </a>
+              </li>
             <ul class="nav flex-column mb-2">
               <li class="nav-item">
                 <a class="nav-link" href="../documentclient/documentclient.vue.php">
                   <span data-feather="file-text"></span>
                     Bons de commande clients
                 </a>
-                <!-- <a class="nav-link" href="../document.vue.php">
-                  <span data-feather="file-text"></span>
-                    Facturation
-                </a> -->
               </li>
             </ul>
             </ul>

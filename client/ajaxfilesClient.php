@@ -15,11 +15,11 @@ $searchArray = array();
 
 $searchQuery = " ";
 if ($searchValue != '') {
-    $searchQuery = " AND (idclient LIKE :idclient) "
-            . "OR (nomclient LIKE :nomclient)"
-            . "OR (adresseclient LIKE :adresseclient)"
-            . "OR (emailclient LIKE :emailclient)"
-            . "OR (telephoneclient LIKE :telephoneclient)";
+    $searchQuery = " AND idclient = :idclient "
+            . "OR nomclient LIKE :nomclient "
+            . "OR adresseclient LIKE :adresseclient "
+            . "OR emailclient LIKE :emailclient "
+            . "OR telephoneclient LIKE :telephoneclient ";
     $searchArray = array(
         'idclient' => "%$searchValue%",
         'nomclient' => "%$searchValue%",

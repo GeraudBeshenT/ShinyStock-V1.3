@@ -15,10 +15,10 @@ $searchArray = array();
 
 $searchQuery = " ";
 if ($searchValue != '') {
-    $searchQuery = " AND (libarticle LIKE :libarticle)"
-			. "OR (qtecdefou LIKE :qtecdefou)"
-			. "OR (qtestock LIKE :qtestock)"
-			. "OR (libcategorie LIKE :libcategorie)";
+    $searchQuery = " AND libarticle LIKE :libarticle "
+			. "OR qtecdefou = :qtecdefou "
+			. "OR qtestock = :qtestock "
+			. "OR libcategorie LIKE :libcategorie ";
     $searchArray = array(
         'libarticle' => "%$searchValue%",
 		'qtecdefou' => "%$searchValue%",
@@ -38,13 +38,13 @@ $totalRecordwithFilter = $ob->CountParamBDD($conn,$searchQuery,$searchArray);
 
 /* Déclaration de la requête de sélection pour l'affichage de la table Article */
 
-$stmt = $conn->prepare("SELECT *
-				FROM article
-				INNER JOIN categorie ON article.idcategorie = categorie.idcategorie
-				WHERE suparticle = 0" . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
+$stmt = $conn->prepare("SELECT * FROM article INNER JOIN categorie ON article.idcategorie = categorie.idcategorie WHERE suparticle = 0 " . $searchQuery . " ORDER BY " . $columnName . " " . $columnSortOrder . " LIMIT :limit,:offset");
 foreach ($searchArray as $key => $search) {
     $stmt->bindValue(':' . $key, $search, PDO::PARAM_STR);
 }
+
+var_dump($stmt);
+die();
 
 $stmt->bindValue(':limit', (int) $row, PDO::PARAM_INT);
 $stmt->bindValue(':offset', (int) $rowperpage, PDO::PARAM_INT);
